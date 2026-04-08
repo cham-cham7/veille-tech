@@ -1,0 +1,3181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Smart Contracts & Supply Chain — Veille 2025–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,900;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Luxe Editorial
+   ============================================================ */
+:root {
+  /* Palette */
+  --noir:    #0b0b0f;
+  --encre:   #1a1a2e;
+  --ardoise: #2d2d3f;
+  --brume:   #5a5a78;
+  --voile:   #9090a8;
+  --neige:   #f5f4f0;
+  --blanc:   #ffffff;
+  --or:      #c9a84c;
+  --or2:     #e8c97a;
+  --rouge:   #c53030;
+  --bleu:    #1e3a8a;
+  --vert:    #166534;
+
+  /* Typographie */
+  --display: 'Playfair Display', Georgia, serif;
+  --body:    'Lora', Georgia, serif;
+  --sans:    'DM Sans', system-ui, sans-serif;
+
+  /* Sizes */
+  --nav-h: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  background: var(--neige);
+  color: var(--encre);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   NAVIGATION LATERALE (pages)
+   ============================================================ */
+.page-nav {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  align-items: flex-end;
+}
+.pn-dot {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+.pn-label {
+  font-family: var(--sans);
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--brume);
+  opacity: 0;
+  transform: translateX(6px);
+  transition: all .2s;
+  white-space: nowrap;
+}
+.pn-dot:hover .pn-label { opacity: 1; transform: translateX(0); }
+.pn-circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--brume);
+  background: transparent;
+  transition: all .25s;
+  flex-shrink: 0;
+}
+.pn-dot.active .pn-circle {
+  background: var(--or);
+  border-color: var(--or);
+  box-shadow: 0 0 0 3px rgba(201,168,76,.2);
+}
+.pn-dot.active .pn-label {
+  opacity: 1;
+  color: var(--or);
+  transform: translateX(0);
+}
+
+/* ============================================================
+   PAGES
+   ============================================================ */
+.page {
+  min-height: 100vh;
+  position: relative;
+  display: none;
+  flex-direction: column;
+}
+.page.active { display: flex; }
+
+/* ============================================================
+   PAGE 0 — COUVERTURE
+   ============================================================ */
+#p0 {
+  background: var(--noir);
+  color: var(--blanc);
+  overflow: hidden;
+}
+.cover-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.cover-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.cover-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+.cover-orb-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(30,58,138,.5) 0%, transparent 70%);
+  top: -100px; left: -100px;
+}
+.cover-orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,.2) 0%, transparent 70%);
+  bottom: 50px; right: 100px;
+}
+.cover-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,.3) 30%, rgba(201,168,76,.3) 70%, transparent);
+}
+.cover-line:nth-child(4) { left: 25%; }
+.cover-line:nth-child(5) { left: 50%; }
+.cover-line:nth-child(6) { left: 75%; }
+
+.cover-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 3.5rem 5rem;
+}
+.cover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cover-badge {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.cover-badge-line {
+  width: 30px;
+  height: 1px;
+  background: var(--or);
+}
+.cover-badge-text {
+  font-family: var(--sans);
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--or);
+}
+.cover-meta-top {
+  font-family: var(--sans);
+  font-size: .65rem;
+  color: var(--voile);
+  letter-spacing: .08em;
+  text-align: right;
+  line-height: 1.6;
+}
+
+.cover-main {
+  padding: 4rem 0;
+}
+.cover-overline {
+  font-family: var(--sans);
+  font-size: .7rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.cover-overline::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--or);
+}
+.cover-h1 {
+  font-family: var(--display);
+  font-size: clamp(4rem, 8vw, 7.5rem);
+  font-weight: 900;
+  line-height: .95;
+  letter-spacing: -.02em;
+  color: var(--blanc);
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+}
+.cover-h1 span {
+  color: var(--or);
+  font-style: italic;
+  font-weight: 400;
+}
+.cover-sub {
+  font-family: var(--body);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.6);
+  max-width: 600px;
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 3.5rem;
+}
+
+/* Stats en couverture */
+.cover-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.08);
+  max-width: 800px;
+}
+.cstat {
+  background: rgba(255,255,255,.03);
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+.cstat-n {
+  font-family: var(--display);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--or);
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+.cstat-l {
+  font-family: var(--sans);
+  font-size: .62rem;
+  color: var(--voile);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.cover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 2rem;
+}
+.cover-author {
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--voile);
+  line-height: 1.6;
+}
+.cover-author strong { color: var(--blanc); font-weight: 500; }
+.cover-start-btn {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  cursor: pointer;
+  background: var(--or);
+  color: var(--noir);
+  border: none;
+  padding: .9rem 2rem;
+  font-family: var(--sans);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: all .25s;
+}
+.cover-start-btn:hover {
+  background: var(--or2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,168,76,.3);
+}
+.cover-start-btn svg {
+  width: 16px; height: 16px;
+  transition: transform .2s;
+}
+.cover-start-btn:hover svg { transform: translateX(4px); }
+
+/* ============================================================
+   HEADER COMMUN DES PAGES INTERNES
+   ============================================================ */
+.page-header {
+  background: var(--blanc);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  padding: 0 4rem;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+.ph-brand {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  cursor: pointer;
+}
+.ph-brand-mark {
+  width: 28px;
+  height: 28px;
+  background: var(--encre);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ph-brand-mark svg { width: 14px; height: 14px; }
+.ph-brand-text {
+  font-family: var(--sans);
+  font-size: .7rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--brume);
+  font-weight: 500;
+}
+.ph-chapter {
+  font-family: var(--display);
+  font-size: .9rem;
+  font-style: italic;
+  color: var(--brume);
+}
+.ph-nav-btns {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+.ph-btn {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .5rem 1.1rem;
+  border: 1px solid rgba(0,0,0,.12);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: .7rem;
+  color: var(--brume);
+  letter-spacing: .05em;
+  transition: all .2s;
+}
+.ph-btn:hover { background: var(--encre); color: var(--blanc); border-color: var(--encre); }
+.ph-btn svg { width: 12px; height: 12px; }
+
+/* ============================================================
+   LAYOUT INTERNE
+   ============================================================ */
+.page-body {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.section-hero {
+  padding: 5rem 4rem 3rem;
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  background: var(--blanc);
+}
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.5rem;
+}
+.eyebrow-num {
+  font-family: var(--display);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: rgba(0,0,0,.05);
+  line-height: 1;
+  letter-spacing: -.03em;
+}
+.eyebrow-label {
+  font-family: var(--sans);
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--or);
+  font-weight: 500;
+}
+.section-title {
+  font-family: var(--display);
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--encre);
+  letter-spacing: -.02em;
+  max-width: 820px;
+  margin-bottom: 1.25rem;
+}
+.section-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--bleu);
+}
+.section-lead {
+  font-family: var(--body);
+  font-size: 1.05rem;
+  color: var(--brume);
+  max-width: 680px;
+  line-height: 1.85;
+  font-style: italic;
+}
+.section-content {
+  padding: 3.5rem 4rem;
+}
+
+/* ============================================================
+   TYPOGRAPHIE COMMUNE
+   ============================================================ */
+.h2 {
+  font-family: var(--display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--encre);
+  margin-bottom: 1rem;
+  letter-spacing: -.01em;
+}
+.h2 em { font-style: italic; font-weight: 400; color: var(--bleu); }
+.h3 {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--encre);
+  margin-bottom: .6rem;
+}
+.prose {
+  font-family: var(--body);
+  font-size: .95rem;
+  color: var(--ardoise);
+  line-height: 1.85;
+  max-width: 720px;
+}
+.prose + .prose { margin-top: 1rem; }
+
+/* ============================================================
+   GRILLES & CARTES
+   ============================================================ */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(0,0,0,.06); border: 1px solid rgba(0,0,0,.06); margin-bottom: 2rem; }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: rgba(0,0,0,.06); border: 1px solid rgba(0,0,0,.06); }
+
+.card {
+  background: var(--blanc);
+  padding: 2rem;
+  border: 1px solid rgba(0,0,0,.07);
+  transition: box-shadow .2s, transform .2s;
+}
+.card:hover { box-shadow: 0 4px 24px rgba(0,0,0,.08); transform: translateY(-2px); }
+.card-label {
+  font-family: var(--sans);
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: .85rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.card-label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--or);
+}
+
+.grid-cell {
+  background: var(--blanc);
+  padding: 1.75rem;
+  transition: background .2s;
+}
+.grid-cell:hover { background: #fafaf7; }
+
+/* ============================================================
+   PULL QUOTE
+   ============================================================ */
+.pullquote {
+  border-left: 3px solid var(--or);
+  padding: 1.25rem 2rem;
+  margin: 2.5rem 0;
+  background: rgba(201,168,76,.04);
+  max-width: 760px;
+}
+.pullquote p {
+  font-family: var(--display);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--encre);
+  line-height: 1.65;
+  font-weight: 400;
+}
+.pullquote cite {
+  display: block;
+  margin-top: .75rem;
+  font-family: var(--sans);
+  font-size: .65rem;
+  color: var(--voile);
+  letter-spacing: .08em;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   PAGE 1 — CONTEXTE
+   ============================================================ */
+.pain-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.06);
+  margin-bottom: 2.5rem;
+}
+.pain-item {
+  background: var(--blanc);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background .2s;
+}
+.pain-item:hover { background: #fefefe; }
+.pain-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--rouge);
+}
+.pain-num {
+  font-family: var(--display);
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(197,48,48,.07);
+  line-height: 1;
+  margin-bottom: .5rem;
+}
+.pain-title {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--encre);
+  margin-bottom: .6rem;
+}
+.pain-desc {
+  font-family: var(--body);
+  font-size: .88rem;
+  color: var(--brume);
+  line-height: 1.8;
+}
+
+/* Graphique contexte */
+.chart-wrap {
+  background: var(--blanc);
+  border: 1px solid rgba(0,0,0,.07);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+.chart-title {
+  font-family: var(--sans);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--brume);
+  margin-bottom: 1.5rem;
+}
+
+/* ============================================================
+   PAGE 2 — TECHNOLOGIE
+   ============================================================ */
+.lifecycle {
+  background: var(--blanc);
+  border: 1px solid rgba(0,0,0,.07);
+  padding: 2.5rem;
+  margin: 2rem 0;
+  position: relative;
+}
+.lifecycle-steps {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-top: 1.5rem;
+}
+.lc-step {
+  flex: 1;
+  padding: 1.5rem 1.25rem;
+  background: #fafaf7;
+  border: 1px solid rgba(0,0,0,.06);
+  position: relative;
+  text-align: center;
+}
+.lc-step + .lc-step { border-left: none; }
+.lc-step::after {
+  content: '';
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left: 10px solid rgba(0,0,0,.08);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  z-index: 2;
+}
+.lc-step:last-child::after { display: none; }
+.lc-step-n {
+  font-family: var(--display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgba(0,0,0,.06);
+  line-height: 1;
+  margin-bottom: .4rem;
+}
+.lc-step-title {
+  font-family: var(--sans);
+  font-size: .8rem;
+  font-weight: 500;
+  color: var(--encre);
+  margin-bottom: .3rem;
+}
+.lc-step-desc {
+  font-family: var(--body);
+  font-size: .75rem;
+  color: var(--brume);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.arch-diagram {
+  background: var(--blanc);
+  border: 1px solid rgba(0,0,0,.07);
+  padding: 2.5rem;
+  margin: 2rem 0;
+}
+.arch-layer {
+  border: 1px solid rgba(0,0,0,.06);
+  padding: 1.5rem;
+  background: #fafaf7;
+  margin-bottom: .75rem;
+  position: relative;
+}
+.arch-layer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--sans);
+  font-size: .6rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--or);
+  border: 1px solid var(--or);
+  padding: .2rem .65rem;
+  margin-bottom: 1rem;
+}
+.arch-blocks-row {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: .75rem;
+}
+.arch-block {
+  padding: .65rem 1rem;
+  background: var(--blanc);
+  border: 1px solid rgba(0,0,0,.08);
+  font-family: var(--sans);
+  font-size: .78rem;
+  color: var(--encre);
+  text-align: center;
+  min-width: 130px;
+}
+.arch-block sub {
+  display: block;
+  font-size: .62rem;
+  color: var(--voile);
+  margin-top: .2rem;
+}
+.arch-connector {
+  text-align: center;
+  font-family: var(--sans);
+  font-size: .65rem;
+  color: var(--voile);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+}
+.arch-connector::before, .arch-connector::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(0,0,0,.08);
+}
+.arch-desc-small {
+  font-family: var(--body);
+  font-size: .78rem;
+  color: var(--brume);
+  text-align: center;
+  font-style: italic;
+  line-height: 1.55;
+}
+.chain-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: .75rem;
+}
+.chain-bloc {
+  border: 1px solid rgba(0,0,0,.1);
+  padding: .6rem 1rem;
+  text-align: center;
+  min-width: 80px;
+  background: var(--blanc);
+  font-family: var(--sans);
+  font-size: .78rem;
+  color: var(--encre);
+}
+.chain-bloc.act {
+  border-color: var(--bleu);
+  background: rgba(30,58,138,.04);
+}
+.chain-link { width: 24px; height: 1px; background: rgba(0,0,0,.12); }
+
+.oracle-layout {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 2rem 0;
+}
+.oracle-box-side {
+  border: 1px solid rgba(0,0,0,.08);
+  padding: 1.5rem;
+  background: var(--blanc);
+}
+.oracle-box-label {
+  font-family: var(--sans);
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--brume);
+  margin-bottom: .85rem;
+}
+.oracle-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.oracle-list li {
+  font-family: var(--body);
+  font-size: .83rem;
+  color: var(--ardoise);
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.oracle-list li::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--or);
+  flex-shrink: 0;
+}
+.oracle-center-box {
+  text-align: center;
+}
+.oracle-icon {
+  width: 56px; height: 56px;
+  background: var(--encre);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto .65rem;
+}
+.oracle-tag {
+  font-family: var(--sans);
+  font-size: .6rem;
+  color: var(--brume);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.flow-diagram {
+  border: 1px solid rgba(0,0,0,.07);
+  padding: 2rem 2.5rem;
+  background: var(--blanc);
+  margin: 2rem 0;
+}
+.flow-steps-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin-top: 1.5rem;
+}
+.fstep {
+  flex: 1;
+  min-width: 140px;
+  padding: 1.1rem 1rem;
+  background: #fafaf7;
+  border: 1px solid rgba(0,0,0,.06);
+  text-align: center;
+}
+.fstep-n {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: rgba(0,0,0,.05);
+  line-height: 1;
+  margin-bottom: .3rem;
+}
+.fstep p {
+  font-family: var(--body);
+  font-size: .78rem;
+  color: var(--ardoise);
+  line-height: 1.5;
+  font-style: italic;
+}
+.farr { color: rgba(0,0,0,.15); flex-shrink: 0; font-size: 1.2rem; }
+
+/* ============================================================
+   PAGE 3 — CAS D'USAGE
+   ============================================================ */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1px;
+  background: rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.06);
+}
+.case-card {
+  background: var(--blanc);
+  padding: 2rem;
+  position: relative;
+  transition: background .2s;
+  overflow: hidden;
+}
+.case-card:hover { background: #fafaf9; }
+.case-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.case-sector {
+  font-family: var(--sans);
+  font-size: .6rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--voile);
+  margin-bottom: .5rem;
+  margin-top: .75rem;
+}
+.case-title {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--encre);
+  margin-bottom: .75rem;
+  letter-spacing: -.01em;
+}
+.case-desc {
+  font-family: var(--body);
+  font-size: .86rem;
+  color: var(--brume);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+.case-kpis {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.case-kpis li {
+  display: flex;
+  gap: .5rem;
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--ardoise);
+}
+.case-kpis li::before {
+  content: '+';
+  color: var(--vert);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.case-kpis li strong { color: var(--encre); }
+
+/* Graphique marché */
+.market-chart {
+  background: var(--blanc);
+  border: 1px solid rgba(0,0,0,.07);
+  padding: 2.5rem;
+  margin: 2.5rem 0;
+}
+.market-chart-title {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  color: var(--encre);
+  margin-bottom: .3rem;
+}
+.market-chart-sub {
+  font-family: var(--body);
+  font-size: .82rem;
+  color: var(--brume);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+/* ============================================================
+   PAGE 4 — ACTEURS
+   ============================================================ */
+.providers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1px;
+  background: rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.06);
+}
+.pcard {
+  background: var(--blanc);
+  padding: 2rem;
+  transition: background .2s;
+}
+.pcard:hover { background: #fafaf8; }
+.pcard-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.pcard-logo {
+  width: 44px; height: 44px;
+  background: var(--encre);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pcard-logo-letter {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--or);
+}
+.pcard-name {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--encre);
+}
+.pcard-type {
+  font-family: var(--sans);
+  font-size: .62rem;
+  color: var(--voile);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-top: .15rem;
+}
+.pcard-body {
+  font-family: var(--body);
+  font-size: .86rem;
+  color: var(--brume);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  font-style: italic;
+}
+.pcard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+.ptag {
+  font-family: var(--sans);
+  font-size: .6rem;
+  padding: .2rem .6rem;
+  border: 1px solid rgba(0,0,0,.1);
+  color: var(--ardoise);
+  letter-spacing: .04em;
+}
+.ptag.accent {
+  border-color: var(--or);
+  color: var(--or);
+}
+
+/* ============================================================
+   PAGE 6 — VEILLE
+   ============================================================ */
+.veille-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.axes-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.06);
+}
+.axe-item {
+  background: var(--blanc);
+  padding: 1.75rem;
+  display: flex;
+  gap: 1.25rem;
+  transition: background .2s;
+}
+.axe-item:hover { background: #fafaf8; }
+.axe-num {
+  font-family: var(--display);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(0,0,0,.06);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 2rem;
+}
+.axe-title {
+  font-family: var(--display);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--encre);
+  margin-bottom: .35rem;
+}
+.axe-desc {
+  font-family: var(--body);
+  font-size: .84rem;
+  color: var(--brume);
+  line-height: 1.7;
+  font-style: italic;
+}
+.keywords-panel {
+  background: var(--blanc);
+  border: 1px solid rgba(0,0,0,.07);
+  padding: 2rem;
+}
+.kw-section { margin-bottom: 1.5rem; }
+.kw-section:last-child { margin-bottom: 0; }
+.kw-section-label {
+  font-family: var(--sans);
+  font-size: .6rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--brume);
+  margin-bottom: .75rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.kw-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.kw-tag {
+  font-family: var(--sans);
+  font-size: .68rem;
+  padding: .28rem .7rem;
+  border: 1px solid rgba(0,0,0,.1);
+  color: var(--ardoise);
+  background: #fafaf7;
+  transition: all .15s;
+}
+.kw-tag:hover {
+  background: var(--encre);
+  color: var(--blanc);
+  border-color: var(--encre);
+}
+
+/* ============================================================
+   PAGE 7 — OUTILS
+   ============================================================ */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px;
+  background: rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.06);
+  margin-bottom: 2.5rem;
+}
+.tcard {
+  background: var(--blanc);
+  padding: 1.75rem;
+  transition: background .2s;
+}
+.tcard:hover { background: #fafaf8; }
+.tcard-cat {
+  font-family: var(--sans);
+  font-size: .6rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--or);
+  margin-bottom: .65rem;
+}
+.tcard-name {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--encre);
+  margin-bottom: .5rem;
+}
+.tcard-desc {
+  font-family: var(--body);
+  font-size: .83rem;
+  color: var(--brume);
+  line-height: 1.7;
+  font-style: italic;
+}
+.query-block {
+  border: 1px solid rgba(0,0,0,.08);
+  padding: 1.5rem 1.75rem;
+  background: var(--blanc);
+  margin-bottom: .75rem;
+}
+.query-label {
+  font-family: var(--sans);
+  font-size: .6rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--or);
+  display: block;
+  margin-bottom: .75rem;
+}
+.query-code {
+  font-family: 'Courier New', monospace;
+  font-size: .8rem;
+  color: var(--encre);
+  line-height: 1.75;
+  word-break: break-all;
+  background: #f8f8f5;
+  padding: 1rem;
+  border-left: 3px solid var(--or);
+}
+.qk { color: var(--bleu); }
+.qo { color: var(--or); }
+.qn { color: var(--rouge); }
+
+/* ============================================================
+   PAGE 7 — DEFIS
+   ============================================================ */
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.06);
+}
+.ch-card {
+  background: var(--blanc);
+  padding: 2rem;
+  transition: background .2s;
+  position: relative;
+  overflow: hidden;
+}
+.ch-card:hover { background: #fafaf8; }
+.ch-badge {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--rouge);
+  border: 1px solid rgba(197,48,48,.3);
+  padding: .2rem .6rem;
+  margin-bottom: 1rem;
+}
+.ch-title {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--encre);
+  margin-bottom: .65rem;
+  letter-spacing: -.01em;
+}
+.ch-desc {
+  font-family: var(--body);
+  font-size: .85rem;
+  color: var(--brume);
+  line-height: 1.78;
+  font-style: italic;
+}
+.verdict-box {
+  background: var(--encre);
+  color: var(--blanc);
+  padding: 3rem;
+  margin-top: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.verdict-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,.01) 40px,
+    rgba(255,255,255,.01) 41px
+  );
+}
+.verdict-box p {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(255,255,255,.9);
+  max-width: 720px;
+  position: relative;
+  z-index: 1;
+}
+.verdict-box p::before {
+  content: '"';
+  font-size: 5rem;
+  color: var(--or);
+  opacity: .3;
+  position: absolute;
+  top: -1.5rem;
+  left: -1rem;
+  font-family: var(--display);
+  line-height: 1;
+}
+.verdict-cite {
+  font-family: var(--sans);
+  font-size: .65rem;
+  color: var(--voile);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   PAGE 9 — BIBLIOGRAPHIE
+   ============================================================ */
+.biblio-list {
+  list-style: none;
+  border: 1px solid rgba(0,0,0,.07);
+  background: var(--blanc);
+}
+.biblio-item {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+  transition: background .15s;
+}
+.biblio-item:last-child { border-bottom: none; }
+.biblio-item:hover { background: #fafaf7; }
+.biblio-ref {
+  font-family: var(--display);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--or);
+  flex-shrink: 0;
+  min-width: 2.5rem;
+  padding-top: .05rem;
+}
+.biblio-text {
+  font-family: var(--body);
+  font-size: .86rem;
+  color: var(--ardoise);
+  line-height: 1.75;
+}
+.biblio-text strong { color: var(--encre); }
+.biblio-text em {
+  font-style: italic;
+  color: var(--bleu);
+  font-family: var(--body);
+  font-size: .83rem;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.page-footer {
+  background: var(--encre);
+  color: rgba(255,255,255,.5);
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.pf-left {
+  font-family: var(--body);
+  font-size: .82rem;
+  line-height: 1.6;
+  font-style: italic;
+}
+.pf-left strong { color: rgba(255,255,255,.85); font-style: normal; font-family: var(--sans); font-size: .78rem; font-weight: 500; }
+.pf-right {
+  font-family: var(--sans);
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  text-align: right;
+}
+
+/* ============================================================
+   TRANSITIONS DE PAGES
+   ============================================================ */
+.page {
+  animation: pageIn .4s ease both;
+}
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   SCROLL INTERNE
+   ============================================================ */
+.page-body {
+  max-height: calc(100vh - var(--nav-h));
+  overflow-y: auto;
+}
+html { height: 100%; }
+body { height: 100%; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .cover-inner { padding: 2.5rem 2rem; }
+  .cover-h1 { font-size: clamp(3rem, 8vw, 5rem); }
+  .cover-stats { grid-template-columns: 1fr 1fr; }
+  .section-hero { padding: 3rem 2rem 2rem; }
+  .section-content { padding: 2.5rem 2rem; }
+  .grid-2, .veille-layout, .oracle-layout { grid-template-columns: 1fr; }
+  .page-header { padding: 0 1.5rem; }
+  .ph-chapter { display: none; }
+  .page-footer { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+  .page-nav { display: none; }
+  .pain-list { grid-template-columns: 1fr; }
+  .lifecycle-steps { flex-direction: column; }
+  .lc-step::after { display: none; }
+}
+@media (max-width: 600px) {
+  .cover-stats { grid-template-columns: 1fr 1fr; }
+  .cover-footer { flex-direction: column; gap: 1.5rem; }
+  .page-header { padding: 0 1rem; }
+  .section-hero { padding: 2rem 1.25rem 1.5rem; }
+  .section-content { padding: 1.75rem 1.25rem; }
+}
+
+/* ============================================================
+   COUVERTURE BLANCHE
+   ============================================================ */
+#p0 {
+  background: var(--blanc);
+  color: var(--encre);
+}
+.cover-white-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 3.5rem 5rem;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+.cover-white-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  padding-bottom: 1.5rem;
+}
+.cover-white-badge-text {
+  font-family: var(--sans);
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--brume);
+}
+.cover-white-school {
+  font-family: var(--sans);
+  font-size: .68rem;
+  color: var(--voile);
+  letter-spacing: .06em;
+  text-align: right;
+}
+.cover-white-main {
+  text-align: center;
+  padding: 2rem 0;
+}
+.cover-white-rule {
+  width: 60px;
+  height: 2px;
+  background: var(--or);
+  margin: 1.5rem auto;
+}
+.cover-white-h1 {
+  font-family: var(--display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--encre);
+}
+.cover-white-h1 span {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--bleu);
+}
+.cover-white-sub {
+  font-family: var(--body);
+  font-size: 1rem;
+  color: var(--brume);
+  max-width: 560px;
+  line-height: 1.8;
+  font-style: italic;
+  margin: 1.5rem auto 2.5rem;
+}
+.cover-white-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(0,0,0,.08);
+  border: 1px solid rgba(0,0,0,.08);
+  max-width: 700px;
+  margin: 0 auto;
+}
+.cw-stat {
+  background: var(--blanc);
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+.cw-stat-n {
+  font-family: var(--display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--or);
+  line-height: 1;
+  margin-bottom: .35rem;
+}
+.cw-stat-l {
+  font-family: var(--sans);
+  font-size: .6rem;
+  color: var(--brume);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.cover-white-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(0,0,0,.08);
+  padding-top: 2rem;
+}
+.cover-white-authors {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+.cover-white-sep {
+  width: 1px;
+  height: 50px;
+  background: rgba(0,0,0,.1);
+  align-self: center;
+}
+.cover-white-author-label {
+  font-family: var(--sans);
+  font-size: .6rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--voile);
+  margin-bottom: .35rem;
+}
+.cover-white-author-name {
+  font-family: var(--body);
+  font-size: .9rem;
+  color: var(--encre);
+  line-height: 1.65;
+}
+/* btn réutilisé */
+.cover-start-btn {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  cursor: pointer;
+  background: var(--encre);
+  color: var(--blanc);
+  border: none;
+  padding: .9rem 2rem;
+  font-family: var(--sans);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: all .25s;
+}
+.cover-start-btn:hover {
+  background: var(--or);
+  color: var(--noir);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,168,76,.25);
+}
+.cover-start-btn svg {
+  width: 16px; height: 16px;
+  transition: transform .2s;
+}
+.cover-start-btn:hover svg { transform: translateX(4px); }
+
+@media (max-width: 900px) {
+  .cover-white-inner { padding: 2.5rem 2rem; }
+  .cover-white-stats { grid-template-columns: 1fr 1fr; }
+  .cover-white-footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+}
+
+/* ============================================================
+   PAGE CAS D'USAGE PÉRISSABLES — styles spécifiques
+   ============================================================ */
+.code-block {
+  background: #1a1a2e;
+  border: 1px solid rgba(255,255,255,.06);
+  padding: 2rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+.code-block pre {
+  font-family: 'Courier New', monospace;
+  font-size: .78rem;
+  color: #e2e8f0;
+  line-height: 1.75;
+  white-space: pre;
+  margin: 0;
+}
+.code-block .ck { color: #c9a84c; }   /* keywords */
+.code-block .ct { color: #7dd3fc; }   /* types */
+.code-block .cs { color: #86efac; }   /* strings */
+.code-block .cc { color: #64748b; }   /* comments */
+.code-block .cv { color: #f0abfc; }   /* variables */
+
+.uc-system {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(0,0,0,.06);
+  border: 1px solid rgba(0,0,0,.06);
+  margin: 2rem 0;
+}
+.uc-comp {
+  background: var(--blanc);
+  padding: 1.75rem;
+  position: relative;
+}
+.uc-comp::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.uc-comp-icon {
+  width: 44px; height: 44px;
+  border: 1px solid rgba(0,0,0,.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background: #fafaf7;
+}
+.uc-comp-title {
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--encre);
+  margin-bottom: .5rem;
+}
+.uc-comp-desc {
+  font-family: var(--body);
+  font-size: .83rem;
+  color: var(--brume);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.logic-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-family: var(--body);
+}
+.logic-table th {
+  background: var(--encre);
+  color: rgba(255,255,255,.85);
+  font-family: var(--sans);
+  font-size: .65rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .85rem 1.25rem;
+  text-align: left;
+  font-weight: 500;
+}
+.logic-table td {
+  padding: .85rem 1.25rem;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  font-size: .86rem;
+  color: var(--ardoise);
+  line-height: 1.6;
+}
+.logic-table tr:hover td { background: #fafaf7; }
+.logic-table .cond { font-style: italic; color: var(--brume); }
+.logic-table .action { font-weight: 500; color: var(--encre); }
+.logic-table .badge {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: .58rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .18rem .55rem;
+  border-radius: 0;
+  border: 1px solid;
+}
+.badge-green { color: var(--vert); border-color: rgba(22,101,52,.3); background: rgba(22,101,52,.05); }
+.badge-orange { color: #92400e; border-color: rgba(146,64,14,.3); background: rgba(146,64,14,.05); }
+.badge-red { color: var(--rouge); border-color: rgba(197,48,48,.3); background: rgba(197,48,48,.05); }
+
+.avlim-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.avlim-card {
+  border: 1px solid rgba(0,0,0,.07);
+  padding: 1.75rem;
+  background: var(--blanc);
+}
+.avlim-header {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.avlim-icon {
+  width: 32px; height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.avlim-title {
+  font-family: var(--display);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--encre);
+}
+.avlim-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.avlim-list li {
+  font-family: var(--body);
+  font-size: .84rem;
+  color: var(--ardoise);
+  display: flex;
+  gap: .6rem;
+  align-items: baseline;
+  line-height: 1.6;
+}
+.av-bullet { color: var(--vert); font-weight: 700; flex-shrink: 0; }
+.lim-bullet { color: var(--rouge); font-weight: 700; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION LATERALE -->
+<div class="page-nav" id="pageNav">
+  <div class="pn-dot active" data-page="0" onclick="goPage(0)">
+    <span class="pn-label">Couverture</span>
+    <div class="pn-circle"></div>
+  </div>
+  <div class="pn-dot" data-page="1" onclick="goPage(1)">
+    <span class="pn-label">Contexte</span>
+    <div class="pn-circle"></div>
+  </div>
+  <div class="pn-dot" data-page="2" onclick="goPage(2)">
+    <span class="pn-label">Technologie</span>
+    <div class="pn-circle"></div>
+  </div>
+  <div class="pn-dot" data-page="3" onclick="goPage(3)">
+    <span class="pn-label">Cas d'usage</span>
+    <div class="pn-circle"></div>
+  </div>
+  <div class="pn-dot" data-page="4" onclick="goPage(4)">
+    <span class="pn-label">Cas périssables</span>
+    <div class="pn-circle"></div>
+  </div>
+  <div class="pn-dot" data-page="5" onclick="goPage(5)">
+    <span class="pn-label">Acteurs</span>
+    <div class="pn-circle"></div>
+  </div>
+  <div class="pn-dot" data-page="6" onclick="goPage(6)">
+    <span class="pn-label">Veille</span>
+    <div class="pn-circle"></div>
+  </div>
+  <div class="pn-dot" data-page="7" onclick="goPage(7)">
+    <span class="pn-label">Outils</span>
+    <div class="pn-circle"></div>
+  </div>
+  <div class="pn-dot" data-page="8" onclick="goPage(8)">
+    <span class="pn-label">Défis</span>
+    <div class="pn-circle"></div>
+  </div>
+  <div class="pn-dot" data-page="9" onclick="goPage(9)">
+    <span class="pn-label">Sources</span>
+    <div class="pn-circle"></div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 0 — COUVERTURE
+     ================================================================ -->
+<div class="page active" id="p0">
+  <div class="cover-white-inner">
+
+    <div class="cover-white-top">
+      <div class="cover-white-badge">
+        <span class="cover-white-badge-text">Veille Technologique — 2025–2026</span>
+      </div>
+      <div class="cover-white-school">Ecole Centrale de Lyon &nbsp;·&nbsp; MOS 4.4 — NTIC</div>
+    </div>
+
+    <div class="cover-white-main">
+      <div class="cover-white-rule"></div>
+      <h1 class="cover-white-h1">Smart Contracts<br>au service de la<br><span>Supply Chain</span></h1>
+      <div class="cover-white-rule"></div>
+      <p class="cover-white-sub">Comment les contrats auto-exécutables transforment les chaînes d'approvisionnement mondiales en automatisant la confiance, la traçabilité et les paiements — sans intermédiaire.</p>
+
+      <div class="cover-white-stats">
+        <div class="cw-stat">
+          <div class="cw-stat-n">5,2 Md$</div>
+          <div class="cw-stat-l">Marché blockchain SC 2026</div>
+        </div>
+        <div class="cw-stat">
+          <div class="cw-stat-n">47,6 %</div>
+          <div class="cw-stat-l">CAGR prévu jusqu'en 2031</div>
+        </div>
+        <div class="cw-stat">
+          <div class="cw-stat-n">65 000+</div>
+          <div class="cw-stat-l">Smart contracts logistique 2025</div>
+        </div>
+        <div class="cw-stat">
+          <div class="cw-stat-n">40 %</div>
+          <div class="cw-stat-l">Part de marché Hyperledger</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-white-footer">
+      <div class="cover-white-authors">
+        <div class="cover-white-author-block">
+          <div class="cover-white-author-label">Élève</div>
+          <div class="cover-white-author-name">Chaimae El Kartat</div>
+        </div>
+        <div class="cover-white-sep"></div>
+        <div class="cover-white-author-block">
+          <div class="cover-white-author-label">Enseignants</div>
+          <div class="cover-white-author-name">René Challon<br>Mohsen Ardabillian<br>Emmanuel Dellandrea</div>
+        </div>
+      </div>
+      <button class="cover-start-btn" onclick="goPage(1)">
+        Commencer la lecture
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 8h10M9 4l4 4-4 4"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 1 — CONTEXTE
+     ================================================================ -->
+<div class="page" id="p1">
+  <div class="page-header">
+    <div class="ph-brand" onclick="goPage(0)">
+      <div class="ph-brand-mark">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <rect x="1" y="1" width="5" height="5"/><rect x="8" y="1" width="5" height="5"/>
+          <rect x="1" y="8" width="5" height="5"/><rect x="8" y="8" width="5" height="5"/>
+        </svg>
+      </div>
+      <span class="ph-brand-text">SC × Supply Chain</span>
+    </div>
+    <div class="ph-chapter">Contexte & Problématique</div>
+    <div class="ph-nav-btns">
+      <button class="ph-btn" onclick="goPage(0)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6H3M5 4L3 6l2 2"/></svg>
+        Précédent
+      </button>
+      <button class="ph-btn" onclick="goPage(2)">
+        Suivant
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h6M7 4l2 2-2 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="section-hero">
+      <div class="section-eyebrow">
+        <span class="eyebrow-num">01</span>
+        <span class="eyebrow-label">Contexte & Problématique</span>
+      </div>
+      <h1 class="section-title">La Supply Chain :<br><em>une boîte noire coûteuse</em></h1>
+      <p class="section-lead">La chaîne d'approvisionnement mondiale repose sur des dizaines d'acteurs hétérogènes qui opèrent chacun dans leurs propres silos informatiques, avec des formats incompatibles et une confiance mutuelle faible.</p>
+    </div>
+    <div class="section-content">
+
+      <!-- Graphique SVG : coûts documentaires -->
+      <div class="chart-wrap" style="margin-bottom:2.5rem;">
+        <div class="chart-title">Répartition des coûts inefficients dans le transport maritime mondial</div>
+        <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#c53030;stop-opacity:.85"/>
+              <stop offset="100%" style="stop-color:#c53030;stop-opacity:.4"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:.85"/>
+              <stop offset="100%" style="stop-color:#1e3a8a;stop-opacity:.4"/>
+            </linearGradient>
+            <linearGradient id="g3" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#c9a84c;stop-opacity:.85"/>
+              <stop offset="100%" style="stop-color:#c9a84c;stop-opacity:.4"/>
+            </linearGradient>
+            <linearGradient id="g4" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#166534;stop-opacity:.85"/>
+              <stop offset="100%" style="stop-color:#166534;stop-opacity:.4"/>
+            </linearGradient>
+          </defs>
+          <!-- Axe Y -->
+          <line x1="60" y1="10" x2="60" y2="155" stroke="#e0ddd5" stroke-width="1"/>
+          <line x1="60" y1="155" x2="700" y2="155" stroke="#e0ddd5" stroke-width="1"/>
+          <!-- Lignes de grille -->
+          <line x1="60" y1="45" x2="700" y2="45" stroke="#e0ddd5" stroke-width=".5" stroke-dasharray="4,4"/>
+          <line x1="60" y1="85" x2="700" y2="85" stroke="#e0ddd5" stroke-width=".5" stroke-dasharray="4,4"/>
+          <line x1="60" y1="125" x2="700" y2="125" stroke="#e0ddd5" stroke-width=".5" stroke-dasharray="4,4"/>
+          <!-- Labels Y -->
+          <text x="52" y="48" text-anchor="end" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8">30%</text>
+          <text x="52" y="88" text-anchor="end" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8">20%</text>
+          <text x="52" y="128" text-anchor="end" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8">10%</text>
+          <text x="52" y="158" text-anchor="end" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8">0%</text>
+          <!-- Barres -->
+          <rect x="95" y="22" width="110" height="133" fill="url(#g1)" rx="1"/>
+          <rect x="245" y="62" width="110" height="93" fill="url(#g2)" rx="1"/>
+          <rect x="395" y="75" width="110" height="80" fill="url(#g3)" rx="1"/>
+          <rect x="545" y="100" width="110" height="55" fill="url(#g4)" rx="1"/>
+          <!-- Valeurs -->
+          <text x="150" y="18" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="#c53030">20%</text>
+          <text x="300" y="58" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="#1e3a8a">14%</text>
+          <text x="450" y="71" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="#c9a84c">12%</text>
+          <text x="600" y="96" text-anchor="middle" font-family="Playfair Display,serif" font-size="12" font-weight="700" fill="#166534">8%</text>
+          <!-- Labels X -->
+          <text x="150" y="172" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="#5a5a78">Paperasse</text>
+          <text x="150" y="183" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="#5a5a78">documentaire</text>
+          <text x="300" y="172" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="#5a5a78">Litiges &amp;</text>
+          <text x="300" y="183" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="#5a5a78">fraudes</text>
+          <text x="450" y="172" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="#5a5a78">Ruptures</text>
+          <text x="450" y="183" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="#5a5a78">chaîne froid</text>
+          <text x="600" y="172" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="#5a5a78">Réconciliation</text>
+          <text x="600" y="183" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9.5" fill="#5a5a78">inventaires</text>
+        </svg>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.72rem;color:#9090a8;margin-top:.5rem;">Sources : DHL Trend Research 2023 · OCDE 2022</div>
+      </div>
+
+      <!-- 4 problèmes -->
+      <div class="pain-list">
+        <div class="pain-item">
+          <div class="pain-num">01</div>
+          <div class="pain-title">Opacité totale</div>
+          <p class="pain-desc">Aucun acteur ne dispose d'une vision complète en temps réel. La marchandise transite par vingt intermédiaires sans qu'aucun n'ait accès à l'historique complet. Chaque base de données est silotée, privée, incompatible.</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-num">02</div>
+          <div class="pain-title">Paperasse et coûts documentaires</div>
+          <p class="pain-desc">Les documents papier représentent jusqu'à 20 % du coût total du transport maritime (DHL, 2023). La saisie manuelle multiplie les erreurs et les retards de règlement. Un connaissement peut prendre une semaine à être traité.</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-num">03</div>
+          <div class="pain-title">Litiges et fraudes</div>
+          <p class="pain-desc">En l'absence de registre partagé, les désaccords sur l'état de la marchandise ou les pénalités donnent lieu à des procédures judiciaires longues. La contrefaçon représente 2,5 % du commerce mondial (OCDE, 2022).</p>
+        </div>
+        <div class="pain-item">
+          <div class="pain-num">04</div>
+          <div class="pain-title">Ruptures de chaîne du froid</div>
+          <p class="pain-desc">Dans les secteurs pharmaceutique et agroalimentaire, les écarts de température non détectés entraînent des pertes de produits et des rappels coûteux. La vérification manuelle est impossible à l'échelle industrielle.</p>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        <p>"La supply chain est le système nerveux de l'économie mondiale. Mais c'est un système nerveux aveugle — chaque nœud ignore ce que font les autres."</p>
+        <cite>— D'après Saberi et al. (2019) et DHL Trend Research (2023)</cite>
+      </div>
+
+      <p class="prose">La blockchain et les smart contracts répondent directement à ces quatre problèmes : ils créent un registre partagé, immuable et vérifiable par tous les acteurs autorisés, dans lequel les règles d'exécution sont codées une fois pour toutes.</p>
+    </div>
+    <div class="page-footer">
+      <div class="pf-left"><strong>Chaimae El Kartat</strong> — Veille Technologique 2025–2026</div>
+      <div class="pf-right">01 / Contexte</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 2 — TECHNOLOGIE
+     ================================================================ -->
+<div class="page" id="p2">
+  <div class="page-header">
+    <div class="ph-brand" onclick="goPage(0)">
+      <div class="ph-brand-mark">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <rect x="1" y="1" width="5" height="5"/><rect x="8" y="1" width="5" height="5"/>
+          <rect x="1" y="8" width="5" height="5"/><rect x="8" y="8" width="5" height="5"/>
+        </svg>
+      </div>
+      <span class="ph-brand-text">SC × Supply Chain</span>
+    </div>
+    <div class="ph-chapter">Technologie</div>
+    <div class="ph-nav-btns">
+      <button class="ph-btn" onclick="goPage(1)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6H3M5 4L3 6l2 2"/></svg>
+        Précédent
+      </button>
+      <button class="ph-btn" onclick="goPage(3)">
+        Suivant
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h6M7 4l2 2-2 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="section-hero">
+      <div class="section-eyebrow">
+        <span class="eyebrow-num">02</span>
+        <span class="eyebrow-label">Technologie</span>
+      </div>
+      <h1 class="section-title">Smart Contracts :<br><em>fonctionnement technique</em></h1>
+      <p class="section-lead">Un smart contract est un programme informatique déployé sur une blockchain qui s'exécute automatiquement lorsque des conditions préalablement codées sont satisfaites. Le code est la loi, son exécution est déterministe, vérifiable et irréversible.</p>
+    </div>
+    <div class="section-content">
+
+      <div class="grid-2" style="margin-bottom:2.5rem;">
+        <div class="card">
+          <div class="card-label">Définition fondatrice</div>
+          <div class="h3">Qu'est-ce qu'un smart contract ?</div>
+          <p class="prose" style="font-size:.88rem;">Le concept a été théorisé par Nick Szabo en 1994, bien avant Bitcoin. Il devient une réalité opérationnelle avec Ethereum en 2015 et son environnement d'exécution décentralisé, l'EVM (Ethereum Virtual Machine).</p>
+          <ul style="list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.5rem;">
+            <li style="font-family:'DM Sans',sans-serif;font-size:.84rem;color:#2d2d3f;display:flex;gap:.5rem;align-items:baseline;"><span style="color:#c9a84c;flex-shrink:0;">—</span><span><strong>Langage :</strong> Solidity (Ethereum), Chaincode Go/Java (Hyperledger Fabric)</span></li>
+            <li style="font-family:'DM Sans',sans-serif;font-size:.84rem;color:#2d2d3f;display:flex;gap:.5rem;align-items:baseline;"><span style="color:#c9a84c;flex-shrink:0;">—</span><span><strong>Exécution :</strong> déterministe, vérifiable, irréversible</span></li>
+            <li style="font-family:'DM Sans',sans-serif;font-size:.84rem;color:#2d2d3f;display:flex;gap:.5rem;align-items:baseline;"><span style="color:#c9a84c;flex-shrink:0;">—</span><span><strong>Déclencheur :</strong> événement on-chain ou donnée transmise par un oracle</span></li>
+            <li style="font-family:'DM Sans',sans-serif;font-size:.84rem;color:#2d2d3f;display:flex;gap:.5rem;align-items:baseline;"><span style="color:#c9a84c;flex-shrink:0;">—</span><span><strong>Stockage :</strong> état persistant sur la blockchain, immuable</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-label">Trois piliers fondamentaux</div>
+          <div class="h3">Ce qui rend le smart contract différent</div>
+          <p class="prose" style="font-size:.88rem;margin-bottom:.85rem;"><strong>Transparence :</strong> le code et les données d'exécution sont visibles par tous les participants autorisés. Il n'y a plus de version unilatérale des faits.</p>
+          <p class="prose" style="font-size:.88rem;margin-bottom:.85rem;"><strong>Immutabilité :</strong> une fois déployé, le contrat et l'historique de ses exécutions ne peuvent être ni modifiés ni supprimés.</p>
+          <p class="prose" style="font-size:.88rem;"><strong>Décentralisation :</strong> aucune entité centrale (banque, notaire) pour valider l'échange. La validation est assurée par le consensus du réseau.</p>
+        </div>
+      </div>
+
+      <!-- Cycle de vie -->
+      <div class="lifecycle">
+        <div class="card-label" style="margin-bottom:.5rem;">Cycle de vie d'un smart contract dans la supply chain</div>
+        <div class="lifecycle-steps">
+          <div class="lc-step">
+            <div class="lc-step-n">1</div>
+            <div class="lc-step-title">Rédaction</div>
+            <div class="lc-step-desc">Les termes métier sont codés en Solidity ou Chaincode</div>
+          </div>
+          <div class="lc-step">
+            <div class="lc-step-n">2</div>
+            <div class="lc-step-title">Déploiement</div>
+            <div class="lc-step-desc">Inscription permanente sur la blockchain</div>
+          </div>
+          <div class="lc-step">
+            <div class="lc-step-n">3</div>
+            <div class="lc-step-title">Déclenchement</div>
+            <div class="lc-step-desc">Événement réel capté par un oracle (IoT, ERP)</div>
+          </div>
+          <div class="lc-step">
+            <div class="lc-step-n">4</div>
+            <div class="lc-step-title">Vérification</div>
+            <div class="lc-step-desc">Le réseau vérifie par consensus distribué</div>
+          </div>
+          <div class="lc-step">
+            <div class="lc-step-n">5</div>
+            <div class="lc-step-title">Exécution</div>
+            <div class="lc-step-desc">Paiement, pénalité ou alerte déclenché automatiquement</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Architecture -->
+      <div class="h2" style="margin-top:2.5rem;margin-bottom:1rem;">Architecture en couches d'une blockchain d'entreprise</div>
+      <div class="arch-diagram">
+        <div class="arch-layer">
+          <div class="arch-layer-badge">Couche Application — Smart Contracts</div>
+          <div class="arch-blocks-row">
+            <div class="arch-block">Paiement conditionnel<sub>Automatisation financière</sub></div>
+            <div class="arch-block">Traçabilité produit<sub>Track & Trace</sub></div>
+            <div class="arch-block">Conformité douanière<sub>Vérification automatisée</sub></div>
+            <div class="arch-block">Gestion des litiges<sub>Résolution automatisée</sub></div>
+          </div>
+          <div class="arch-desc-small">Chaque smart contract encode un cas d'usage métier spécifique. Il s'exécute de manière autonome sans intervention humaine dès que ses conditions sont satisfaites.</div>
+        </div>
+        <div class="arch-connector">déployés sur</div>
+        <div class="arch-layer">
+          <div class="arch-layer-badge">Couche Consensus & Registre — Blockchain</div>
+          <div class="chain-row">
+            <div class="chain-bloc">Bloc N−1</div>
+            <div class="chain-link"></div>
+            <div class="chain-bloc act"><strong>Bloc N</strong></div>
+            <div class="chain-link"></div>
+            <div class="chain-bloc">Bloc N+1</div>
+          </div>
+          <div class="arch-desc-small">Chaque bloc contient des transactions, un horodatage et un hash cryptographique liant ce bloc au précédent. Toute modification invalide la chaîne entière.</div>
+        </div>
+        <div class="arch-connector">répliquée sur</div>
+        <div class="arch-layer">
+          <div class="arch-layer-badge">Couche Réseau — Nœuds distribués</div>
+          <div class="arch-blocks-row">
+            <div class="arch-block">Nœud N1<sub>Copie complète</sub></div>
+            <div class="arch-block">Nœud N2<sub>Copie complète</sub></div>
+            <div class="arch-block">Nœud N3<sub>Copie complète</sub></div>
+            <div class="arch-block">Ordonnateur<sub>Consensus</sub></div>
+          </div>
+          <div class="arch-desc-small">Chaque nœud conserve une copie complète du registre et participe au consensus. Aucun nœud central — la résilience est distribuée.</div>
+        </div>
+      </div>
+
+      <!-- Oracle -->
+      <div class="h2" style="margin-top:2.5rem;margin-bottom:.75rem;">Le problème des Oracles</div>
+      <p class="prose" style="margin-bottom:1.5rem;">Un smart contract ne peut accéder qu'aux données présentes sur la blockchain. Pour réagir à des événements réels (capteur IoT, ERP, prix de marché), il faut un oracle : un composant logiciel qui agit comme un pont sécurisé entre le monde physique et le monde on-chain.</p>
+
+      <div class="oracle-layout">
+        <div class="oracle-box-side">
+          <div class="oracle-box-label">Monde physique (Off-chain)</div>
+          <ul class="oracle-list">
+            <li>Capteur IoT de température</li>
+            <li>Système ERP de l'expéditeur</li>
+            <li>Base de données douanière</li>
+            <li>Prix marché en temps réel</li>
+            <li>Statut de livraison GPS</li>
+          </ul>
+        </div>
+        <div class="oracle-center-box">
+          <div class="oracle-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+              <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+            </svg>
+          </div>
+          <div class="oracle-tag">Oracle<br>sécurisé</div>
+        </div>
+        <div class="oracle-box-side">
+          <div class="oracle-box-label">Blockchain (On-chain)</div>
+          <ul class="oracle-list">
+            <li>Contrat de paiement conditionnel</li>
+            <li>Contrat de traçabilité</li>
+            <li>Registre des pénalités</li>
+            <li>Assurance paramétrique</li>
+            <li>Token de propriété (NFT)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Flow pharma -->
+      <div class="flow-diagram">
+        <div class="card-label">Exemple : Chaîne du froid pharmaceutique (IoT + Oracle + Smart Contract)</div>
+        <div class="flow-steps-row">
+          <div class="fstep">
+            <div class="fstep-n">01</div>
+            <p>Capteur IoT détecte T° > 4°C pendant le transport d'un vaccin</p>
+          </div>
+          <div class="farr">›</div>
+          <div class="fstep">
+            <div class="fstep-n">02</div>
+            <p>Oracle Chainlink transmet l'alerte horodatée et sécurisée on-chain</p>
+          </div>
+          <div class="farr">›</div>
+          <div class="fstep">
+            <div class="fstep-n">03</div>
+            <p>Le smart contract vérifie la violation des SLA et identifie le responsable</p>
+          </div>
+          <div class="farr">›</div>
+          <div class="fstep">
+            <div class="fstep-n">04</div>
+            <p>Pénalité prélevée automatiquement — police d'assurance déclenchée sans litige</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blockchains publiques vs privées -->
+      <div class="grid-2" style="margin-top:2rem;">
+        <div class="card">
+          <div class="card-label">Blockchains publiques</div>
+          <div class="h3">Ethereum, Polygon, Solana</div>
+          <p class="prose" style="font-size:.87rem;margin-bottom:.85rem;">Ouvertes à tous, sans permission. Transparence maximale, interopérabilité avec l'écosystème Web3. Conviennent aux écosystèmes où la confiance entre acteurs inconnus est nulle.</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.4rem;">
+            <li style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#2d2d3f;display:flex;gap:.5rem;"><span style="color:#166534;flex-shrink:0;">+</span><span><strong>Avantage :</strong> décentralisation totale, immutabilité absolue</span></li>
+            <li style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#2d2d3f;display:flex;gap:.5rem;"><span style="color:#c53030;flex-shrink:0;">−</span><span><strong>Limite :</strong> performances limitées, coûts de gas variables</span></li>
+            <li style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#2d2d3f;display:flex;gap:.5rem;"><span style="color:#c9a84c;flex-shrink:0;">→</span><span><strong>Usage SC :</strong> certificats d'authenticité luxe, finance commerciale</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-label">Blockchains privées / permissionnées</div>
+          <div class="h3">Hyperledger Fabric, Quorum</div>
+          <p class="prose" style="font-size:.87rem;margin-bottom:.85rem;">Accès restreint aux participants autorisés. Débit jusqu'à 5x supérieur à Ethereum privé, latence 26x inférieure (MDPI, 2025). Standard de fait avec 40 % de part de marché (IDC, 2024).</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.4rem;">
+            <li style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#2d2d3f;display:flex;gap:.5rem;"><span style="color:#166534;flex-shrink:0;">+</span><span><strong>Avantage :</strong> confidentialité, performances, gouvernance claire</span></li>
+            <li style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#2d2d3f;display:flex;gap:.5rem;"><span style="color:#c53030;flex-shrink:0;">−</span><span><strong>Limite :</strong> moins décentralisée, risque de capture par un acteur dominant</span></li>
+            <li style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:#2d2d3f;display:flex;gap:.5rem;"><span style="color:#c9a84c;flex-shrink:0;">→</span><span><strong>Usage SC :</strong> IBM Food Trust, TradeLens, pharma</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="pf-left"><strong>Chaimae El Kartat</strong> — Veille Technologique 2025–2026</div>
+      <div class="pf-right">02 / Technologie</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 3 — CAS D'USAGE
+     ================================================================ -->
+<div class="page" id="p3">
+  <div class="page-header">
+    <div class="ph-brand" onclick="goPage(0)">
+      <div class="ph-brand-mark">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <rect x="1" y="1" width="5" height="5"/><rect x="8" y="1" width="5" height="5"/>
+          <rect x="1" y="8" width="5" height="5"/><rect x="8" y="8" width="5" height="5"/>
+        </svg>
+      </div>
+      <span class="ph-brand-text">SC × Supply Chain</span>
+    </div>
+    <div class="ph-chapter">Cas d'usage industriels</div>
+    <div class="ph-nav-btns">
+      <button class="ph-btn" onclick="goPage(2)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6H3M5 4L3 6l2 2"/></svg>
+        Précédent
+      </button>
+      <button class="ph-btn" onclick="goPage(4)">
+        Suivant
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h6M7 4l2 2-2 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="section-hero">
+      <div class="section-eyebrow">
+        <span class="eyebrow-num">03</span>
+        <span class="eyebrow-label">Cas d'usage industriels</span>
+      </div>
+      <h1 class="section-title">Les <em>pionniers</em><br>de l'adoption</h1>
+      <p class="section-lead">Des entreprises de premier plan ont déployé des solutions blockchain et smart contracts en production, avec des résultats chiffrés et documentés, couvrant l'agroalimentaire, la logistique maritime, la pharmacie, le luxe et l'automobile.</p>
+    </div>
+    <div class="section-content">
+
+      <!-- Graphique SVG : gains obtenus -->
+      <div class="market-chart">
+        <div class="market-chart-title">Gains mesurés — Déploiements en production</div>
+        <div class="market-chart-sub">Réduction documentée sur les délais et coûts opérationnels</div>
+        <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+          <!-- Grille -->
+          <line x1="0" y1="120" x2="700" y2="120" stroke="#e0ddd5" stroke-width="1"/>
+          <line x1="0" y1="80"  x2="700" y2="80"  stroke="#e0ddd5" stroke-width=".5" stroke-dasharray="4,4"/>
+          <line x1="0" y1="40"  x2="700" y2="40"  stroke="#e0ddd5" stroke-width=".5" stroke-dasharray="4,4"/>
+          <!-- Barres horizontales style lollipop -->
+          <!-- Walmart: 99.97% -->
+          <rect x="0" y="10" width="560" height="22" fill="rgba(22,101,52,.15)" rx="1"/>
+          <rect x="0" y="10" width="560" height="22" fill="rgba(22,101,52,.6)" rx="1" style="clip-path:inset(0 0 0 0)"/>
+          <text x="8" y="25" font-family="DM Sans,sans-serif" font-size="10" fill="#fff" font-weight="500">Walmart / IBM Food Trust — Identification origine : 7 jours → 2,2 sec</text>
+          <text x="568" y="25" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#166534">−99,9%</text>
+          <!-- Maersk délais: 80% -->
+          <rect x="0" y="38" width="448" height="22" fill="rgba(30,58,138,.15)" rx="1"/>
+          <rect x="0" y="38" width="448" height="22" fill="rgba(30,58,138,.55)" rx="1"/>
+          <text x="8" y="53" font-family="DM Sans,sans-serif" font-size="10" fill="#fff" font-weight="500">Maersk / TradeLens — Délais documentaires</text>
+          <text x="456" y="53" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#1e3a8a">−80%</text>
+          <!-- Maersk coûts: 30% -->
+          <rect x="0" y="66" width="168" height="22" fill="rgba(30,58,138,.12)" rx="1"/>
+          <rect x="0" y="66" width="168" height="22" fill="rgba(30,58,138,.4)" rx="1"/>
+          <text x="8" y="81" font-family="DM Sans,sans-serif" font-size="10" fill="#fff" font-weight="500">Maersk / TradeLens — Coûts administratifs</text>
+          <text x="176" y="81" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#1e3a8a">−30%</text>
+          <!-- Rappels: indicatif -->
+          <rect x="0" y="94" width="310" height="22" fill="rgba(201,168,76,.15)" rx="1"/>
+          <rect x="0" y="94" width="310" height="22" fill="rgba(201,168,76,.5)" rx="1"/>
+          <text x="8" y="109" font-family="DM Sans,sans-serif" font-size="10" fill="#1a1a2e" font-weight="500">Nestlé / Unilever — Rapidité des rappels produits</text>
+          <text x="318" y="109" font-family="Playfair Display,serif" font-size="11" font-weight="700" fill="#c9a84c">Significatif</text>
+        </svg>
+      </div>
+
+      <div class="cases-grid">
+        <div class="case-card">
+          <div class="case-bar" style="background:#16a34a;"></div>
+          <div class="case-sector">Agroalimentaire</div>
+          <div class="case-title">Walmart / IBM Food Trust</div>
+          <p class="case-desc">Traçabilité des produits alimentaires de l'origine au rayon via smart contracts sur Hyperledger Fabric. En cas de rappel sanitaire, toute la chaîne est identifiée en secondes.</p>
+          <ul class="case-kpis">
+            <li>Identification d'origine en <strong>2,2 secondes</strong> contre 7 jours auparavant</li>
+            <li>Conformité FDA automatisée pour le suivi des lots</li>
+          </ul>
+        </div>
+        <div class="case-card">
+          <div class="case-bar" style="background:#0369a1;"></div>
+          <div class="case-sector">Logistique maritime</div>
+          <div class="case-title">Maersk / TradeLens</div>
+          <p class="case-desc">Numérisation des documents d'expédition (connaissements, certificats d'origine) et automatisation des paiements. Plus de 150 organisations et ports fédérés.</p>
+          <ul class="case-kpis">
+            <li>Délais documentaires réduits de <strong>80 %</strong></li>
+            <li>Coûts administratifs réduits de <strong>30 %</strong></li>
+            <li>Visibilité partagée en temps réel entre tous les acteurs</li>
+          </ul>
+        </div>
+        <div class="case-card">
+          <div class="case-bar" style="background:#7c3aed;"></div>
+          <div class="case-sector">Pharmaceutique</div>
+          <div class="case-title">Chaîne du froid — Vaccins</div>
+          <p class="case-desc">Vérification automatisée de la température via capteurs IoT couplés à des smart contracts Hyperledger. Pénalités prélevées sans intervention humaine.</p>
+          <ul class="case-kpis">
+            <li>Pertes de vaccins liées aux ruptures de température réduites</li>
+            <li>Conformité FDA/EMA vérifiable en temps réel</li>
+            <li>Détection instantanée des anomalies</li>
+          </ul>
+        </div>
+        <div class="case-card">
+          <div class="case-bar" style="background:#b45309;"></div>
+          <div class="case-sector">Supply chain alimentaire</div>
+          <div class="case-title">Nestlé / Unilever</div>
+          <p class="case-desc">Suivi transparent des ingrédients à travers de multiples niveaux de fournisseurs (Tier 1, 2, 3). Intégration avec IBM Food Trust.</p>
+          <ul class="case-kpis">
+            <li>Rappels produits significativement accélérés</li>
+            <li>Traçabilité de bout en bout garantie</li>
+            <li>Conformité réglementaire automatisée</li>
+          </ul>
+        </div>
+        <div class="case-card">
+          <div class="case-bar" style="background:#be185d;"></div>
+          <div class="case-sector">Mode & Luxe</div>
+          <div class="case-title">Luxury Brands — NFT & Authenticité</div>
+          <p class="case-desc">Certificat d'authenticité immuable (NFT) lié à chaque article de luxe. Traçabilité anti-contrefaçon de la production à la revente sur le marché secondaire.</p>
+          <ul class="case-kpis">
+            <li>Authentification tout au long de la vie du produit</li>
+            <li>Marché secondaire sécurisé avec historique vérifiable</li>
+          </ul>
+        </div>
+        <div class="case-card">
+          <div class="case-bar" style="background:#0891b2;"></div>
+          <div class="case-sector">Automobile — EU Green Deal</div>
+          <div class="case-title">SAP — Digital Product Passport</div>
+          <p class="case-desc">Pilot lancé en janvier 2024 avec plusieurs OEMs automobiles. Traçabilité carbone des composants dans le cadre du règlement européen Digital Product Passport.</p>
+          <ul class="case-kpis">
+            <li>Conformité EU Green Deal pour les données carbone</li>
+            <li>Traçabilité des matières premières (lithium, cobalt)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="pf-left"><strong>Chaimae El Kartat</strong> — Veille Technologique 2025–2026</div>
+      <div class="pf-right">03 / Cas d'usage</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 4 — CAS D'USAGE PÉRISSABLES
+     ================================================================ -->
+<div class="page" id="p4">
+  <div class="page-header">
+    <div class="ph-brand" onclick="goPage(0)">
+      <div class="ph-brand-mark">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <rect x="1" y="1" width="5" height="5"/><rect x="8" y="1" width="5" height="5"/>
+          <rect x="1" y="8" width="5" height="5"/><rect x="8" y="8" width="5" height="5"/>
+        </svg>
+      </div>
+      <span class="ph-brand-text">SC × Supply Chain</span>
+    </div>
+    <div class="ph-chapter">Cas d'usage — Produits périssables</div>
+    <div class="ph-nav-btns">
+      <button class="ph-btn" onclick="goPage(3)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6H3M5 4L3 6l2 2"/></svg>
+        Précédent
+      </button>
+      <button class="ph-btn" onclick="goPage(5)">
+        Suivant
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h6M7 4l2 2-2 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="section-hero">
+      <div class="section-eyebrow">
+        <span class="eyebrow-num">04</span>
+        <span class="eyebrow-label">Cas d'usage approfondi</span>
+      </div>
+      <h1 class="section-title">Smart Contracts dans la<br><em>supply chain des produits périssables</em></h1>
+      <p class="section-lead">Les chaînes d'approvisionnement de produits périssables — alimentaires ou pharmaceutiques — nécessitent un contrôle strict des conditions de transport. Toute déviation peut entraîner des pertes économiques importantes. Les smart contracts couplés à des capteurs IoT permettent d'automatiser ce contrôle.</p>
+    </div>
+    <div class="section-content">
+
+      <!-- Source -->
+      <div style="font-family:'DM Sans',sans-serif;font-size:.72rem;color:var(--voile);letter-spacing:.06em;margin-bottom:2rem;display:flex;align-items:center;gap:.75rem;">
+        <span style="width:20px;height:1px;background:var(--or);display:inline-block;flex-shrink:0;"></span>
+        Basé sur : Karanam, M. & Lanka, K. (2026). <em>Blockchain-Based Smart Contract in Three-Echelon Perishable Food Supply Chain.</em> Engineering Proceedings, MDPI. DOI : 10.3390/engproc202613000
+      </div>
+
+      <!-- Principe du système : 3 composants -->
+      <div class="h2" style="margin-bottom:1rem;">Principe du système</div>
+      <p class="prose" style="margin-bottom:1.5rem;">Le système repose sur l'intégration de trois composants principaux qui forment une chaîne de confiance automatisée, de la mesure physique à l'exécution contractuelle.</p>
+
+      <div class="uc-system">
+        <div class="uc-comp">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#0891b2;"></div>
+          <div class="uc-comp-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0891b2" stroke-width="1.5">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+            </svg>
+          </div>
+          <div class="uc-comp-title">Capteurs IoT</div>
+          <p class="uc-comp-desc">Mesurent en temps réel les conditions environnementales — température et humidité — tout au long du transport. Transmettent les données de manière continue vers l'oracle.</p>
+        </div>
+        <div class="uc-comp">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--or);"></div>
+          <div class="uc-comp-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#c9a84c" stroke-width="1.5">
+              <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/>
+            </svg>
+          </div>
+          <div class="uc-comp-title">Oracle (pont)</div>
+          <p class="uc-comp-desc">Transmet les données des capteurs IoT vers la blockchain de façon sécurisée et horodatée. Constitue le maillon critique garantissant l'intégrité des données off-chain vers on-chain.</p>
+        </div>
+        <div class="uc-comp">
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--bleu);"></div>
+          <div class="uc-comp-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#1e3a8a" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="1"/>
+              <path d="M9 9h6M9 12h6M9 15h4"/>
+            </svg>
+          </div>
+          <div class="uc-comp-title">Smart Contract</div>
+          <p class="uc-comp-desc">Stocké sur la blockchain, il vérifie en continu si les conditions respectent les seuils définis. Déclenche automatiquement les actions contractuelles (paiement, pénalité, alerte).</p>
+        </div>
+      </div>
+
+      <!-- Logique de fonctionnement -->
+      <div class="h2" style="margin-bottom:1rem;margin-top:2.5rem;">Logique de fonctionnement</div>
+      <p class="prose" style="margin-bottom:1.25rem;">Le smart contract encode les règles métier sous forme de conditions vérifiables. L'exécution est entièrement automatique, sans intervention humaine possible une fois déployé.</p>
+
+      <table class="logic-table">
+        <thead>
+          <tr>
+            <th>Condition détectée</th>
+            <th>Statut</th>
+            <th>Action déclenchée automatiquement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cond">Température dans l'intervalle acceptable tout au long du transport</td>
+            <td><span class="badge badge-green">Conforme</span></td>
+            <td class="action">Livraison validée — paiement intégral libéré vers le fournisseur</td>
+          </tr>
+          <tr>
+            <td class="cond">Anomalie ponctuelle détectée (écart temporaire)</td>
+            <td><span class="badge badge-orange">Alerte</span></td>
+            <td class="action">Alerte générée et enregistrée on-chain — enquête déclenchée</td>
+          </tr>
+          <tr>
+            <td class="cond">Violation critique des conditions — seuil dépassé de manière continue</td>
+            <td><span class="badge badge-red">Non-conforme</span></td>
+            <td class="action">Paiement bloqué ou pénalité prélevée automatiquement — fonds retournés à l'acheteur</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Code Solidity -->
+      <div class="h2" style="margin-bottom:.5rem;margin-top:2.5rem;">Exemple de smart contract (Solidity)</div>
+      <p class="prose" style="margin-bottom:1.25rem;font-size:.88rem;">Le code ci-dessous illustre un contrat simplifié mais représentatif. La fonction <code style="font-family:'Courier New',monospace;background:rgba(0,0,0,.05);padding:.1rem .35rem;font-size:.82rem;">recordTemperature</code> est appelée par l'oracle, et <code style="font-family:'Courier New',monospace;background:rgba(0,0,0,.05);padding:.1rem .35rem;font-size:.82rem;">confirmDelivery</code> déclenche le paiement conditionnel.</p>
+
+      <div class="code-block">
+<pre><span class="cc">// SPDX-License-Identifier: MIT</span>
+<span class="ck">pragma</span> <span class="ct">solidity</span> ^0.8.0;
+
+<span class="ck">contract</span> <span class="cv">ColdChain</span> {
+
+    <span class="ct">address</span> <span class="ck">public</span> buyer;
+    <span class="ct">address</span> <span class="ck">public</span> supplier;
+    <span class="ct">int</span>     <span class="ck">public</span> minTemp;
+    <span class="ct">int</span>     <span class="ck">public</span> maxTemp;
+    <span class="ct">bool</span>    <span class="ck">public</span> isDelivered  = <span class="ck">false</span>;
+    <span class="ct">bool</span>    <span class="ck">public</span> isCompliant  = <span class="ck">true</span>;
+
+    <span class="ck">constructor</span>(<span class="ct">address</span> _supplier, <span class="ct">int</span> _minTemp, <span class="ct">int</span> _maxTemp) {
+        buyer    = msg.sender;
+        supplier = _supplier;
+        minTemp  = _minTemp;
+        maxTemp  = _maxTemp;
+    }
+
+    <span class="cc">// Appelée par l'oracle à chaque lecture du capteur IoT</span>
+    <span class="ck">function</span> <span class="cv">recordTemperature</span>(<span class="ct">int</span> currentTemp) <span class="ck">public</span> {
+        <span class="ck">require</span>(!isDelivered, <span class="cs">"Livraison déjà complétée"</span>);
+        <span class="ck">if</span> (currentTemp &lt; minTemp || currentTemp &gt; maxTemp) {
+            isCompliant = <span class="ck">false</span>;  <span class="cc">// violation détectée</span>
+        }
+    }
+
+    <span class="cc">// Déclenchée par l'acheteur à réception — libère ou bloque le paiement</span>
+    <span class="ck">function</span> <span class="cv">confirmDelivery</span>() <span class="ck">public</span> {
+        <span class="ck">require</span>(msg.sender == buyer, <span class="cs">"Seul l'acheteur peut confirmer"</span>);
+        isDelivered = <span class="ck">true</span>;
+        <span class="ck">if</span> (isCompliant) {
+            <span class="ck">payable</span>(supplier).<span class="cv">transfer</span>(<span class="ck">address</span>(<span class="ck">this</span>).balance);
+        } <span class="ck">else</span> {
+            <span class="ck">payable</span>(buyer).<span class="cv">transfer</span>(<span class="ck">address</span>(<span class="ck">this</span>).balance);
+        }
+    }
+
+    <span class="ck">receive</span>() <span class="ck">external</span> <span class="ck">payable</span> {}
+}</pre>
+      </div>
+
+      <!-- Avantages & Limites -->
+      <div class="h2" style="margin-bottom:1rem;margin-top:2.5rem;">Avantages et limites</div>
+      <div class="avlim-grid">
+        <div class="avlim-card">
+          <div class="avlim-header">
+            <div class="avlim-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#166534" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="avlim-title">Avantages</div>
+          </div>
+          <ul class="avlim-list">
+            <li><span class="av-bullet">+</span>Automatisation complète des processus de vérification</li>
+            <li><span class="av-bullet">+</span>Réduction significative des litiges entre acteurs</li>
+            <li><span class="av-bullet">+</span>Amélioration de la traçabilité et de la transparence</li>
+            <li><span class="av-bullet">+</span>Sécurisation des transactions — pas d'intervention manuelle</li>
+            <li><span class="av-bullet">+</span>Enregistrement immuable et horodaté de chaque mesure</li>
+          </ul>
+        </div>
+        <div class="avlim-card">
+          <div class="avlim-header">
+            <div class="avlim-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c53030" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+            </div>
+            <div class="avlim-title">Limites</div>
+          </div>
+          <ul class="avlim-list">
+            <li><span class="lim-bullet">−</span>Dépendance aux oracles pour l'intégrité des données IoT</li>
+            <li><span class="lim-bullet">−</span>Complexité d'intégration avec les systèmes ERP existants</li>
+            <li><span class="lim-bullet">−</span>Problèmes potentiels liés à la scalabilité de la blockchain</li>
+            <li><span class="lim-bullet">−</span>Coût initial de déploiement et de maintenance élevé</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pullquote">
+        <p>"En automatisant le contrôle des conditions de transport et les paiements, les smart contracts permettent d'optimiser les opérations logistiques tout en réduisant les risques et les coûts associés aux produits périssables."</p>
+        <cite>— Karanam & Lanka, Engineering Proceedings MDPI, 2026</cite>
+      </div>
+
+    </div>
+    <div class="page-footer">
+      <div class="pf-left"><strong>Chaimae El Kartat</strong> — Veille Technologique 2025–2026</div>
+      <div class="pf-right">04 / Cas périssables</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 5 — ACTEURS
+     ================================================================ -->
+<div class="page" id="p5">
+  <div class="page-header">
+    <div class="ph-brand" onclick="goPage(0)">
+      <div class="ph-brand-mark">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <rect x="1" y="1" width="5" height="5"/><rect x="8" y="1" width="5" height="5"/>
+          <rect x="1" y="8" width="5" height="5"/><rect x="8" y="8" width="5" height="5"/>
+        </svg>
+      </div>
+      <span class="ph-brand-text">SC × Supply Chain</span>
+    </div>
+    <div class="ph-chapter">Fournisseurs technologiques</div>
+    <div class="ph-nav-btns">
+      <button class="ph-btn" onclick="goPage(4)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6H3M5 4L3 6l2 2"/></svg>
+        Précédent
+      </button>
+      <button class="ph-btn" onclick="goPage(6)">
+        Suivant
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h6M7 4l2 2-2 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="section-hero">
+      <div class="section-eyebrow">
+        <span class="eyebrow-num">04</span>
+        <span class="eyebrow-label">Fournisseurs technologiques</span>
+      </div>
+      <h1 class="section-title">L'<em>écosystème</em><br>des plateformes</h1>
+      <p class="section-lead">Derrière chaque déploiement industriel, des protocoles et plateformes spécialisés fournissent l'infrastructure blockchain. Le choix de la plateforme détermine les compromis entre performance, confidentialité et décentralisation.</p>
+    </div>
+    <div class="section-content">
+
+      <!-- Graphique parts de marché -->
+      <div class="chart-wrap" style="margin-bottom:2.5rem;">
+        <div class="chart-title">Parts de marché — Plateformes blockchain enterprise (2024)</div>
+        <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+          <!-- Hyperledger: 40% -->
+          <rect x="20" y="20" width="280" height="38" fill="rgba(30,58,138,.75)" rx="1"/>
+          <text x="30" y="44" font-family="Playfair Display,serif" font-size="13" font-weight="700" fill="#fff">Hyperledger Fabric</text>
+          <text x="308" y="44" font-family="Playfair Display,serif" font-size="14" font-weight="700" fill="#1e3a8a">40%</text>
+          <text x="348" y="44" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8">Leader marché enterprise</text>
+          <!-- Ethereum: 28% -->
+          <rect x="20" y="68" width="196" height="38" fill="rgba(124,58,237,.65)" rx="1"/>
+          <text x="30" y="92" font-family="Playfair Display,serif" font-size="13" font-weight="700" fill="#fff">Ethereum / EVM</text>
+          <text x="224" y="92" font-family="Playfair Display,serif" font-size="14" font-weight="700" fill="#7c3aed">28%</text>
+          <text x="264" y="92" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8">Référence smart contracts</text>
+          <!-- VeChain: 18% -->
+          <rect x="20" y="116" width="126" height="38" fill="rgba(8,145,178,.65)" rx="1"/>
+          <text x="30" y="140" font-family="Playfair Display,serif" font-size="13" font-weight="700" fill="#fff">VeChain</text>
+          <text x="154" y="140" font-family="Playfair Display,serif" font-size="14" font-weight="700" fill="#0891b2">18%</text>
+          <text x="194" y="140" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8">Spécialiste supply chain</text>
+          <!-- Autres: 14% -->
+          <rect x="20" y="164" width="98" height="10" fill="rgba(90,90,120,.35)" rx="1"/>
+          <text x="126" y="173" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8">Autres (Oracle BCP, SAP, Quorum...) — 14%</text>
+        </svg>
+        <div style="font-family:'DM Sans',sans-serif;font-size:.72rem;color:#9090a8;margin-top:.5rem;">Source : IDC 2024</div>
+      </div>
+
+      <div class="providers-grid">
+        <div class="pcard">
+          <div class="pcard-header">
+            <div class="pcard-logo"><div class="pcard-logo-letter">E</div></div>
+            <div>
+              <div class="pcard-name">Ethereum</div>
+              <div class="pcard-type">Protocole public — depuis 2015</div>
+            </div>
+          </div>
+          <p class="pcard-body">Protocole de référence pour les smart contracts, créé par Vitalik Buterin. Réseau public avec plus de 500 000 nœuds. La transition vers Proof of Stake (The Merge, 2022) a réduit la consommation énergétique de 99,9 %. Utilisé pour les applications à forte exigence de transparence.</p>
+          <div class="pcard-tags">
+            <span class="ptag">Solidity</span><span class="ptag">EVM</span><span class="ptag">Public</span><span class="ptag">PoS</span><span class="ptag accent">Référence</span>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-header">
+            <div class="pcard-logo"><div class="pcard-logo-letter">H</div></div>
+            <div>
+              <div class="pcard-name">Hyperledger Fabric</div>
+              <div class="pcard-type">Linux Foundation / IBM</div>
+            </div>
+          </div>
+          <p class="pcard-body">Standard entreprise n°1 avec 40 % de part de marché sur les registres privés et plus de 500 déploiements en production en 2024. Performances jusqu'à 5x supérieures à Ethereum privé en termes de débit et latence 26x inférieure.</p>
+          <div class="pcard-tags">
+            <span class="ptag">Chaincode</span><span class="ptag">Privé</span><span class="ptag">Permissionné</span><span class="ptag">PBFT</span><span class="ptag accent">Leader marché</span>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-header">
+            <div class="pcard-logo"><div class="pcard-logo-letter">V</div></div>
+            <div>
+              <div class="pcard-name">VeChain</div>
+              <div class="pcard-type">Spécialiste supply chain</div>
+            </div>
+          </div>
+          <p class="pcard-body">Blockchain conçue spécifiquement pour la supply chain, avec intégration native IoT. Partenariat avec Walmart China (décembre 2023) pour la traçabilité de la viande de porc, couvrant 23 % des nœuds de données de la chaîne.</p>
+          <div class="pcard-tags">
+            <span class="ptag">IoT natif</span><span class="ptag">Traçabilité</span><span class="ptag">ToolChain</span><span class="ptag accent">Supply chain</span>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-header">
+            <div class="pcard-logo"><div class="pcard-logo-letter">C</div></div>
+            <div>
+              <div class="pcard-name">Chainlink</div>
+              <div class="pcard-type">Oracle décentralisé</div>
+            </div>
+          </div>
+          <p class="pcard-body">Réseau d'oracles décentralisés de référence. Son protocole CCIP (Cross-Chain Interoperability Protocol), lancé en 2023-2024, permet aux smart contracts d'interagir entre blockchains distinctes — adressant le problème majeur d'interopérabilité.</p>
+          <div class="pcard-tags">
+            <span class="ptag">CCIP 2024</span><span class="ptag">Oracle</span><span class="ptag">Cross-chain</span><span class="ptag accent">Infrastructure</span>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-header">
+            <div class="pcard-logo"><div class="pcard-logo-letter">S</div></div>
+            <div>
+              <div class="pcard-name">SAP Blockchain</div>
+              <div class="pcard-type">ERP Integration</div>
+            </div>
+          </div>
+          <p class="pcard-body">SAP intègre la blockchain directement dans ses suites ERP (S/4HANA, SAP Business Network). Le pilot Digital Product Passport (janvier 2024) s'appuie sur Hyperledger Fabric pour les OEMs automobiles dans le cadre du EU Green Deal.</p>
+          <div class="pcard-tags">
+            <span class="ptag">ERP natif</span><span class="ptag">S/4HANA</span><span class="ptag">Hyperledger</span><span class="ptag accent">Enterprise</span>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-header">
+            <div class="pcard-logo"><div class="pcard-logo-letter">O</div></div>
+            <div>
+              <div class="pcard-name">Oracle Blockchain Platform</div>
+              <div class="pcard-type">Cloud Enterprise</div>
+            </div>
+          </div>
+          <p class="pcard-body">Solution cloud basée sur Hyperledger Fabric, proposant un déploiement managé clé en main. Intégration native avec Oracle ERP Cloud et Oracle SCM Cloud. Cible les entreprises cherchant un interlocuteur unique.</p>
+          <div class="pcard-tags">
+            <span class="ptag">Cloud managé</span><span class="ptag">Hyperledger</span><span class="ptag">Oracle ERP</span><span class="ptag accent">Enterprise</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="pf-left"><strong>Chaimae El Kartat</strong> — Veille Technologique 2025–2026</div>
+      <div class="pf-right">05 / Acteurs</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 6 — VEILLE
+     ================================================================ -->
+<div class="page" id="p6">
+  <div class="page-header">
+    <div class="ph-brand" onclick="goPage(0)">
+      <div class="ph-brand-mark">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <rect x="1" y="1" width="5" height="5"/><rect x="8" y="1" width="5" height="5"/>
+          <rect x="1" y="8" width="5" height="5"/><rect x="8" y="8" width="5" height="5"/>
+        </svg>
+      </div>
+      <span class="ph-brand-text">SC × Supply Chain</span>
+    </div>
+    <div class="ph-chapter">Méthodologie de veille</div>
+    <div class="ph-nav-btns">
+      <button class="ph-btn" onclick="goPage(5)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6H3M5 4L3 6l2 2"/></svg>
+        Précédent
+      </button>
+      <button class="ph-btn" onclick="goPage(7)">
+        Suivant
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h6M7 4l2 2-2 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="section-hero">
+      <div class="section-eyebrow">
+        <span class="eyebrow-num">05</span>
+        <span class="eyebrow-label">Méthodologie de veille</span>
+      </div>
+      <h1 class="section-title">Périmètre &<br><em>axes de surveillance</em></h1>
+      <p class="section-lead">Le cœur de cible est l'intersection entre blockchain et logistique physique. L'objectif : détecter les cas d'usage réels en production, les verrous technologiques et les évolutions réglementaires (RGPD, EU Green Deal).</p>
+    </div>
+    <div class="section-content">
+      <div class="veille-layout">
+        <div class="axes-panel">
+          <div class="axe-item">
+            <div class="axe-num">01</div>
+            <div>
+              <div class="axe-title">Axe technologique</div>
+              <p class="axe-desc">Protocoles (Ethereum, Hyperledger), sécurisation des données, interopérabilité, maturité des oracles, intégration IoT, benchmarks de performance.</p>
+            </div>
+          </div>
+          <div class="axe-item">
+            <div class="axe-num">02</div>
+            <div>
+              <div class="axe-title">Axe métier</div>
+              <p class="axe-desc">Retours sur investissement, automatisation des paiements, traçabilité logistique, cas émergents (financement du commerce, assurance paramétrique).</p>
+            </div>
+          </div>
+          <div class="axe-item">
+            <div class="axe-num">03</div>
+            <div>
+              <div class="axe-title">Axe réglementaire</div>
+              <p class="axe-desc">Validité légale du code, responsabilité en cas de bug, RGPD vs immutabilité, normes EU Green Deal (Digital Product Passport), MiCA.</p>
+            </div>
+          </div>
+        </div>
+        <div class="keywords-panel">
+          <div class="h3" style="margin-bottom:1.25rem;">Mots-clés et hashtags surveillés</div>
+          <div class="kw-section">
+            <div class="kw-section-label">Hashtags</div>
+            <div class="kw-tags">
+              <span class="kw-tag">#SmartContracts</span>
+              <span class="kw-tag">#BlockchainSupplyChain</span>
+              <span class="kw-tag">#SupplyChainTransparency</span>
+              <span class="kw-tag">#Web3Logistics</span>
+              <span class="kw-tag">#TrackAndTrace</span>
+              <span class="kw-tag">#DigitalSupplyChain</span>
+            </div>
+          </div>
+          <div class="kw-section">
+            <div class="kw-section-label">Termes techniques</div>
+            <div class="kw-tags">
+              <span class="kw-tag">Hyperledger Fabric</span>
+              <span class="kw-tag">Chaincode</span>
+              <span class="kw-tag">Blockchain Oracle</span>
+              <span class="kw-tag">DLT</span>
+              <span class="kw-tag">Cold Chain</span>
+              <span class="kw-tag">TradeLens</span>
+              <span class="kw-tag">VeChain ToolChain</span>
+              <span class="kw-tag">CCIP Chainlink</span>
+            </div>
+          </div>
+          <div class="kw-section">
+            <div class="kw-section-label">Entreprises ciblées</div>
+            <div class="kw-tags">
+              <span class="kw-tag">IBM Food Trust</span>
+              <span class="kw-tag">Maersk</span>
+              <span class="kw-tag">Walmart</span>
+              <span class="kw-tag">Nestlé</span>
+              <span class="kw-tag">SAP</span>
+              <span class="kw-tag">Chainlink</span>
+              <span class="kw-tag">Contour</span>
+              <span class="kw-tag">Komgo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="pf-left"><strong>Chaimae El Kartat</strong> — Veille Technologique 2025–2026</div>
+      <div class="pf-right">06 / Veille</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 7 — OUTILS
+     ================================================================ -->
+<div class="page" id="p7">
+  <div class="page-header">
+    <div class="ph-brand" onclick="goPage(0)">
+      <div class="ph-brand-mark">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <rect x="1" y="1" width="5" height="5"/><rect x="8" y="1" width="5" height="5"/>
+          <rect x="1" y="8" width="5" height="5"/><rect x="8" y="8" width="5" height="5"/>
+        </svg>
+      </div>
+      <span class="ph-brand-text">SC × Supply Chain</span>
+    </div>
+    <div class="ph-chapter">Outils de collecte</div>
+    <div class="ph-nav-btns">
+      <button class="ph-btn" onclick="goPage(6)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6H3M5 4L3 6l2 2"/></svg>
+        Précédent
+      </button>
+      <button class="ph-btn" onclick="goPage(8)">
+        Suivant
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h6M7 4l2 2-2 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="section-hero">
+      <div class="section-eyebrow">
+        <span class="eyebrow-num">06</span>
+        <span class="eyebrow-label">Outils de collecte et curation</span>
+      </div>
+      <h1 class="section-title">Sources &<br><em>traitement</em></h1>
+      <p class="section-lead">Une combinaison d'outils académiques, professionnels et communautaires pour une veille exhaustive et rigoureuse. Chaque source répond à un objectif distinct dans la chaîne de collecte et d'analyse.</p>
+    </div>
+    <div class="section-content">
+      <div class="tools-grid">
+        <div class="tcard">
+          <div class="tcard-cat">Collecte académique</div>
+          <div class="tcard-name">Google Scholar</div>
+          <p class="tcard-desc">Recherche avec opérateurs booléens. Environ 923 résultats sur le périmètre ciblé. Alertes automatiques sur les nouveaux articles.</p>
+        </div>
+        <div class="tcard">
+          <div class="tcard-cat">Bases scientifiques</div>
+          <div class="tcard-name">ResearchGate / IEEE</div>
+          <p class="tcard-desc">Articles peer-reviewed et actes de conférences. Sources primaires pour les benchmarks de performance et les études de cas.</p>
+        </div>
+        <div class="tcard">
+          <div class="tcard-cat">Professionnel</div>
+          <div class="tcard-name">LinkedIn</div>
+          <p class="tcard-desc">Actualité industrielle, rapports de marché (Harbor Consultings, Aelix Echo), publications d'experts et signaux faibles.</p>
+        </div>
+        <div class="tcard">
+          <div class="tcard-cat">Communauté</div>
+          <div class="tcard-name">Reddit</div>
+          <p class="tcard-desc">Suivi de r/blockchain, r/supplychain, r/CryptoTechnology. Retours terrain non filtrés sur les implémentations réelles.</p>
+        </div>
+        <div class="tcard">
+          <div class="tcard-cat">Gestion et scoring</div>
+          <div class="tcard-name">Zotero</div>
+          <p class="tcard-desc">Agrégation et scoring selon trois critères : date de publication, fiabilité de la source et fréquence des mots-clés.</p>
+        </div>
+        <div class="tcard">
+          <div class="tcard-cat">Monitoring social</div>
+          <div class="tcard-name">Brand24</div>
+          <p class="tcard-desc">Analyse de sentiments, détection de crises et suivi des événements en temps réel. Alertes sur les pics de mentions.</p>
+        </div>
+        <div class="tcard">
+          <div class="tcard-cat">Automatisation</div>
+          <div class="tcard-name">Flux RSS</div>
+          <p class="tcard-desc">Veille long terme avec alertes automatiques. Abonnements à SupplyChainBrain, Logistics Viewpoints, Gartner.</p>
+        </div>
+        <div class="tcard">
+          <div class="tcard-cat">Curation</div>
+          <div class="tcard-name">Scoop.it / Meltwater</div>
+          <p class="tcard-desc">Agrégation et diffusion des contenus sélectionnés. Suivi X (ex-Twitter) avec les hashtags surveillés.</p>
+        </div>
+      </div>
+
+      <div class="h2" style="margin-bottom:1rem;">Requêtes avancées utilisées</div>
+      <div class="query-block">
+        <span class="query-label">Requête générale — périmètre élargi</span>
+        <div class="query-code">(<span class="qk">"Smart Contract"</span> <span class="qo">OR</span> <span class="qk">"Blockchain"</span>) <span class="qo">AND</span> (<span class="qk">"Supply Chain"</span> <span class="qo">OR</span> <span class="qk">"Logistics"</span>) <span class="qo">AND</span> (<span class="qk">"Traceability"</span> <span class="qo">OR</span> <span class="qk">"Automation"</span>) <span class="qn">-Crypto -Bitcoin</span></div>
+      </div>
+      <div class="query-block">
+        <span class="query-label">Requête spécifique — Chaîne du froid</span>
+        <div class="query-code">(<span class="qk">"Smart Contract"</span> <span class="qo">OR</span> <span class="qk">"DLT"</span>) <span class="qo">AND</span> (<span class="qk">"Cold Chain"</span> <span class="qo">OR</span> <span class="qk">"Temperature monitoring"</span> <span class="qo">OR</span> <span class="qk">"Pharma"</span>) <span class="qo">AND</span> (<span class="qk">"Shipping"</span> <span class="qo">OR</span> <span class="qk">"Transport"</span>)</div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="pf-left"><strong>Chaimae El Kartat</strong> — Veille Technologique 2025–2026</div>
+      <div class="pf-right">07 / Outils</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 8 — DÉFIS
+     ================================================================ -->
+<div class="page" id="p8">
+  <div class="page-header">
+    <div class="ph-brand" onclick="goPage(0)">
+      <div class="ph-brand-mark">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <rect x="1" y="1" width="5" height="5"/><rect x="8" y="1" width="5" height="5"/>
+          <rect x="1" y="8" width="5" height="5"/><rect x="8" y="8" width="5" height="5"/>
+        </svg>
+      </div>
+      <span class="ph-brand-text">SC × Supply Chain</span>
+    </div>
+    <div class="ph-chapter">Défis et conclusion</div>
+    <div class="ph-nav-btns">
+      <button class="ph-btn" onclick="goPage(7)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6H3M5 4L3 6l2 2"/></svg>
+        Précédent
+      </button>
+      <button class="ph-btn" onclick="goPage(9)">
+        Suivant
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h6M7 4l2 2-2 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="section-hero">
+      <div class="section-eyebrow">
+        <span class="eyebrow-num">07</span>
+        <span class="eyebrow-label">Défis et conclusion</span>
+      </div>
+      <h1 class="section-title">Maturité réelle,<br><em>freins structurels</em></h1>
+      <p class="section-lead">La technologie est prête. Ethereum, Hyperledger Fabric, VeChain — l'infrastructure existe et fonctionne en production. Mais l'adoption massive se heurte à des obstacles juridiques, organisationnels et techniques profonds.</p>
+    </div>
+    <div class="section-content">
+
+      <!-- Graphique maturité -->
+      <div class="chart-wrap" style="margin-bottom:2.5rem;">
+        <div class="chart-title">Matrice maturité / impact — Freins à l'adoption</div>
+        <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+          <!-- Axes -->
+          <line x1="60" y1="10" x2="60" y2="180" stroke="#e0ddd5" stroke-width="1.5"/>
+          <line x1="60" y1="180" x2="640" y2="180" stroke="#e0ddd5" stroke-width="1.5"/>
+          <!-- Labels axes -->
+          <text x="30" y="95" text-anchor="middle" transform="rotate(-90,30,95)" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8" letter-spacing="1">IMPACT</text>
+          <text x="350" y="198" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#9090a8" letter-spacing="1">URGENCE</text>
+          <!-- Quadrants -->
+          <rect x="60" y="10" width="290" height="85" fill="rgba(201,168,76,.04)"/>
+          <rect x="350" y="10" width="290" height="85" fill="rgba(197,48,48,.04)"/>
+          <rect x="60" y="95" width="290" height="85" fill="rgba(0,0,0,.02)"/>
+          <rect x="350" y="95" width="290" height="85" fill="rgba(30,58,138,.04)"/>
+          <!-- Labels quadrants -->
+          <text x="205" y="26" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(201,168,76,.6)" letter-spacing=".5">IMPACT FORT / URGENCE FAIBLE</text>
+          <text x="495" y="26" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(197,48,48,.7)" letter-spacing=".5">PRIORITÉ CRITIQUE</text>
+          <text x="205" y="111" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(0,0,0,.25)" letter-spacing=".5">SURVEILLANCE</text>
+          <text x="495" y="111" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(30,58,138,.5)" letter-spacing=".5">ATTENTION SOUTENUE</text>
+          <!-- Ligne de séparation -->
+          <line x1="350" y1="10" x2="350" y2="180" stroke="#e0ddd5" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="60" y1="95" x2="640" y2="95" stroke="#e0ddd5" stroke-width="1" stroke-dasharray="4,4"/>
+          <!-- Points -->
+          <circle cx="480" cy="38" r="10" fill="rgba(197,48,48,.7)" stroke="#c53030" stroke-width="1"/>
+          <text x="480" y="42" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#fff" font-weight="500">Jur.</text>
+          <text x="480" y="57" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#c53030">Juridique</text>
+          <circle cx="550" cy="55" r="10" fill="rgba(197,48,48,.7)" stroke="#c53030" stroke-width="1"/>
+          <text x="550" y="59" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#fff" font-weight="500">RGPD</text>
+          <text x="550" y="74" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#c53030">RGPD</text>
+          <circle cx="420" cy="130" r="8" fill="rgba(30,58,138,.65)" stroke="#1e3a8a" stroke-width="1"/>
+          <text x="420" y="134" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#fff" font-weight="500">Int.</text>
+          <text x="420" y="149" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#1e3a8a">Interop.</text>
+          <circle cx="510" cy="118" r="8" fill="rgba(30,58,138,.65)" stroke="#1e3a8a" stroke-width="1"/>
+          <text x="510" y="122" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#fff" font-weight="500">Ora.</text>
+          <text x="510" y="137" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#1e3a8a">Oracles</text>
+          <circle cx="160" cy="52" r="8" fill="rgba(201,168,76,.7)" stroke="#c9a84c" stroke-width="1"/>
+          <text x="160" y="56" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#fff" font-weight="500">Res.</text>
+          <text x="160" y="71" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#c9a84c">Respon.</text>
+          <circle cx="220" cy="140" r="7" fill="rgba(90,90,120,.5)" stroke="#5a5a78" stroke-width="1"/>
+          <text x="220" y="144" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#fff" font-weight="500">PME</text>
+          <text x="220" y="159" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="#5a5a78">Adoption</text>
+        </svg>
+      </div>
+
+      <div class="challenges-grid">
+        <div class="ch-card">
+          <div class="ch-badge">Juridique</div>
+          <div class="ch-title">"Code is Law" vs droit civil</div>
+          <p class="ch-desc">Le code informatique est difficilement qualifiable comme "contrat" au sens juridique. Il manque le consentement éclairé, illisible pour un non-expert. Le fossé culturel entre développeurs et juristes freine l'adoption institutionnelle.</p>
+        </div>
+        <div class="ch-card">
+          <div class="ch-badge">RGPD</div>
+          <div class="ch-title">Immutabilité vs droit à l'oubli</div>
+          <p class="ch-desc">La nature ineffaçable de la blockchain entre en conflit direct avec le RGPD. Impossible de corriger une erreur de saisie ou d'annuler une transaction une fois validée. Le stockage de hashes plutôt que de données brutes est exploré mais ne résout pas tout.</p>
+        </div>
+        <div class="ch-card">
+          <div class="ch-badge">Responsabilité</div>
+          <div class="ch-title">Flou de la responsabilité</div>
+          <p class="ch-desc">En l'absence de tiers de confiance, qui est responsable en cas de bug coûteux ? Le développeur, la plateforme ou l'utilisateur ? Quel tribunal est compétent sur un réseau décentralisé mondial ?</p>
+        </div>
+        <div class="ch-card">
+          <div class="ch-badge">Oracle</div>
+          <div class="ch-title">Le problème des oracles</div>
+          <p class="ch-desc">Un oracle compromis ou défaillant peut déclencher des pénalités injustifiées ou bloquer des paiements légitimes. La fiabilité de l'oracle devient le maillon critique de toute la chaîne de confiance.</p>
+        </div>
+        <div class="ch-card">
+          <div class="ch-badge">Interopérabilité</div>
+          <div class="ch-title">Fragmentation de l'écosystème</div>
+          <p class="ch-desc">Les acteurs d'une même supply chain utilisent souvent des blockchains différentes. L'absence de standards communs fragmente l'écosystème. Le protocole CCIP et les travaux ISO TC 307 tentent d'adresser ce problème.</p>
+        </div>
+        <div class="ch-card">
+          <div class="ch-badge">Adoption</div>
+          <div class="ch-title">Barrières à l'entrée pour les PME</div>
+          <p class="ch-desc">Le déploiement nécessite des compétences rares (développeurs Solidity, Chaincode) et des investissements initiaux élevés. Les PME peinent à s'intégrer aux écosystèmes des grands donneurs d'ordre.</p>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <p>La vraie révolution des smart contracts dans la supply chain n'est pas encore technique — elle est juridique et organisationnelle. La technologie est prête ; c'est le cadre humain qui doit rattraper son retard.</p>
+        <div class="verdict-cite">— Synthèse de veille, 2026</div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="pf-left"><strong>Chaimae El Kartat</strong> — Veille Technologique 2025–2026</div>
+      <div class="pf-right">08 / Défis</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 9 — BIBLIOGRAPHIE
+     ================================================================ -->
+<div class="page" id="p9">
+  <div class="page-header">
+    <div class="ph-brand" onclick="goPage(0)">
+      <div class="ph-brand-mark">
+        <svg viewBox="0 0 14 14" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <rect x="1" y="1" width="5" height="5"/><rect x="8" y="1" width="5" height="5"/>
+          <rect x="1" y="8" width="5" height="5"/><rect x="8" y="8" width="5" height="5"/>
+        </svg>
+      </div>
+      <span class="ph-brand-text">SC × Supply Chain</span>
+    </div>
+    <div class="ph-chapter">Sources & Références</div>
+    <div class="ph-nav-btns">
+      <button class="ph-btn" onclick="goPage(8)">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6H3M5 4L3 6l2 2"/></svg>
+        Précédent
+      </button>
+      <button class="ph-btn" onclick="goPage(0)">
+        Couverture
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h6M7 4l2 2-2 2"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="section-hero">
+      <div class="section-eyebrow">
+        <span class="eyebrow-num">08</span>
+        <span class="eyebrow-label">Bibliographie</span>
+      </div>
+      <h1 class="section-title">Sources &<br><em>références</em></h1>
+      <p class="section-lead">Corpus de sources académiques, industrielles et institutionnelles sélectionnées selon les critères de fiabilité, d'actualité et de pertinence thématique.</p>
+    </div>
+    <div class="section-content">
+      <ul class="biblio-list">
+        <li class="biblio-item">
+          <span class="biblio-ref">[1]</span>
+          <div class="biblio-text"><strong>Szabo, N. (1994).</strong> Smart Contracts. Manuscrit non publié — origine du concept et du principe "Code is Law".</div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[2]</span>
+          <div class="biblio-text"><strong>Ayadi, N., Hussain, S.A., et al. (2026).</strong> A Blockchain-Enabled Smart Contract Architecture for Enhancing Transparency, Traceability, and Trust in Global Supply Chain Management. <em>MDPI Computers.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[3]</span>
+          <div class="biblio-text"><strong>Karanam, M. & Lanka, K. (2026).</strong> Blockchain-Based Smart Contract in Three-Echelon Perishable Food Supply Chain. <em>Engineering Proceedings, MDPI.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[4]</span>
+          <div class="biblio-text"><strong>Meafa, A., Benabdellah, A.C., et al. (2026).</strong> Toward Resilient and Digital Automotive Sourcing Process: A Blockchain and Smart Contracts-Based Solution. <em>Procedia Computer Science, Elsevier.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[5]</span>
+          <div class="biblio-text"><strong>Harbor Consultings (2026).</strong> Smart Contract Solution Market Analysis Report: Global Insights by Region and Application. <em>LinkedIn / Reliable Business Insights, mars 2026.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[6]</span>
+          <div class="biblio-text"><strong>Aelix Echo (2026).</strong> The Trust Deficit: How Blockchain is Rewiring Supply Chain Transparency. <em>LinkedIn, mars 2026.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[7]</span>
+          <div class="biblio-text"><strong>Saberi, S., Kouhizadeh, M., Sarkis, J., & Shen, L. (2019).</strong> Blockchain technology and its relationships to sustainable supply chain management. <em>International Journal of Production Research, 57(7), 2117-2135.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[8]</span>
+          <div class="biblio-text"><strong>DHL Trend Research (2023).</strong> Blockchain in Logistics: Perspectives on the Upcoming Transformation. <em>DHL Customer Solutions & Innovation.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[9]</span>
+          <div class="biblio-text"><strong>Bocek, T., Rodrigues, B.B., Strasser, T., & Stiller, B. (2017).</strong> Blockchains everywhere — a use-case of blockchains in the pharma supply-chain. <em>IFIP/IEEE Symposium on Integrated Network and Service Management.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[10]</span>
+          <div class="biblio-text"><strong>IBM (2023).</strong> IBM Food Trust: How Walmart, Nestlé and Unilever Use Blockchain for Food Traceability. <em>IBM Case Study / Media Center.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[11]</span>
+          <div class="biblio-text"><strong>IBM & Maersk (2022).</strong> TradeLens: Blockchain-Based Global Shipping Platform — Final Report. <em>White Paper.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[12]</span>
+          <div class="biblio-text"><strong>Durovic, M., & Janssen, A. (2019).</strong> The Formation of Blockchain-based Smart Contracts in the Light of Contract Law. <em>European Review of Private Law, 27(6).</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[13]</span>
+          <div class="biblio-text"><strong>Raskin, M. (2017).</strong> The Law and Legality of Smart Contracts. <em>Georgetown Law Technology Review, 1, 305.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[14]</span>
+          <div class="biblio-text"><strong>Caldarelli, G. (2020).</strong> Understanding the Blockchain Oracle Problem: A Call for Action. <em>Information, 11(11), 509.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[15]</span>
+          <div class="biblio-text"><strong>Deloitte (2024).</strong> Blockchain in Supply Chain: Global Trends and Future Outlook. <em>Deloitte Insights.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[16]</span>
+          <div class="biblio-text"><strong>OCDE (2022).</strong> Trade in Counterfeit Goods and the Internet. <em>OECD Publishing.</em></div>
+        </li>
+        <li class="biblio-item">
+          <span class="biblio-ref">[17]</span>
+          <div class="biblio-text"><strong>Kamble, S.S., Gunasekaran, A., & Sharma, R. (2020).</strong> Modeling the blockchain enabled traceability in agriculture supply chain. <em>MDPI Computers.</em></div>
+        </li>
+      </ul>
+    </div>
+    <div class="page-footer">
+      <div class="pf-left"><strong>Chaimae El Kartat</strong> — Veille Technologique 2025–2026 · Ecole Centrale de Lyon · MOS 4.4</div>
+      <div class="pf-right">09 / Sources</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// NAVIGATION
+// ============================================================
+let currentPage = 0;
+const totalPages = 10;
+
+function goPage(n) {
+  const pages = document.querySelectorAll('.page');
+  const dots = document.querySelectorAll('.pn-dot');
+
+  pages.forEach(p => p.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+
+  const target = document.getElementById('p' + n);
+  if (target) {
+    target.classList.add('active');
+    // Scroll to top of page body
+    const body = target.querySelector('.page-body');
+    if (body) body.scrollTop = 0;
+  }
+
+  const dot = document.querySelector('[data-page="' + n + '"]');
+  if (dot) dot.classList.add('active');
+
+  currentPage = n;
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    if (currentPage < totalPages - 1) goPage(currentPage + 1);
+  }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    if (currentPage > 0) goPage(currentPage - 1);
+  }
+});
+
+// Swipe support
+let touchStartX = 0;
+let touchStartY = 0;
+document.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+    if (dx < 0 && currentPage < totalPages - 1) goPage(currentPage + 1);
+    if (dx > 0 && currentPage > 0) goPage(currentPage - 1);
+  }
+}, { passive: true });
+</script>
+</body>
+</html>
